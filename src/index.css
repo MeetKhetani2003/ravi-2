@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
+
+  --color-blush-50: #fff5f7;
+  --color-blush-100: #ffe6ed;
+  --color-blush-200: #ffd0dd;
+  --color-blush-300: #ffaac2;
+  --color-blush-400: #ff7da3;
+  --color-blush-500: #ff5488;
+  --color-blush-600: #e8356b;
+
+  --color-sky-50: #f0f7ff;
+  --color-sky-100: #e0efff;
+  --color-sky-200: #baddff;
+  --color-sky-300: #8ac5ff;
+  --color-sky-400: #5aa7f5;
+
+  --color-cream-50: #fffaf5;
+  --color-cream-100: #fff1e2;
+
+  --color-ink-900: #0f1729;
+  --color-ink-800: #1a2340;
+  --color-ink-700: #2a3555;
+  --color-ink-500: #5b6887;
+  --color-ink-400: #8490ad;
+  --color-ink-300: #b3bcd1;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #0f1729;
+  background: #fffaf5;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #ffd0dd;
+  color: #0f1729;
+}
+
+/* Premium scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fff5f7;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff7da3, #ff5488);
+  border-radius: 20px;
+  border: 2px solid #fff5f7;
+}
+
+/* Glass effect helper */
+.glass {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 41, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Animated gradient background */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 12s ease infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+@keyframes blob {
+  0%, 100% { border-radius: 42% 58% 56% 44% / 55% 48% 52% 45%; }
+  33% { border-radius: 55% 45% 40% 60% / 45% 58% 42% 55%; }
+  66% { border-radius: 48% 52% 62% 38% / 58% 42% 58% 42%; }
+}
+
+.animate-blob {
+  animation: blob 16s ease-in-out infinite;
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Premium shimmer for loaders */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Hide number arrows */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
