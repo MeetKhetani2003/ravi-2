@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+"use client";
+import Link from 'next/link';
 import { Phone, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -13,7 +14,7 @@ export function WhatsAppFloat() {
     <AnimatePresence>
       {show && (
         <motion.a
-          href="https://wa.me/919876543210"
+          href="https://wa.me/917087556657"
           target="_blank"
           rel="noreferrer"
           initial={{ scale: 0, opacity: 0 }}
@@ -38,7 +39,7 @@ export function EmergencyStrip() {
       <div className="relative flex items-center justify-center gap-3 px-4 flex-wrap">
         <span className="inline-flex h-2 w-2 rounded-full bg-white animate-pulse" />
         <span>24/7 Emergency Maternity & NICU — Call now:</span>
-        <a href="tel:+919876543210" className="font-bold underline underline-offset-4 decoration-2">+91 98765 43210</a>
+        <a href="tel:7087556657" className="font-bold underline underline-offset-4 decoration-2">70875-56657</a>
       </div>
     </div>
   );
@@ -100,14 +101,14 @@ export function PageHero({
               className="mt-8 flex flex-wrap gap-3"
             >
               <Link
-                to="/appointment"
+                href="/appointment"
                 className="inline-flex items-center gap-2 rounded-full bg-ink-900 text-white px-6 py-3.5 text-sm font-semibold hover:bg-ink-800 transition shadow-lg shadow-ink-900/10"
               >
                 Book a consultation
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
               </Link>
               <a
-                href="tel:+919876543210"
+                href="tel:7087556657"
                 className="inline-flex items-center gap-2 rounded-full bg-white text-ink-900 px-6 py-3.5 text-sm font-semibold border border-blush-100 hover:border-blush-300 transition"
               >
                 <Phone className="h-4 w-4" /> Call 24/7

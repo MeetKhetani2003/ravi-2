@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+"use client";
+import Link from 'next/link';
 import { Phone, Mail, MapPin, Heart, ArrowUpRight, Camera, Users, Send, Play } from 'lucide-react';
 
 const quick = [
@@ -11,7 +12,7 @@ const quick = [
 ];
 
 const hospital = [
-  { label: 'About Fateh', to: '/about' },
+  { label: 'About FH', to: '/about' },
   { label: 'Our Doctors', to: '/doctors' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'Parent Corner', to: '/parent-corner' },
@@ -66,8 +67,8 @@ export default function Footer() {
                 </svg>
               </div>
               <div className="leading-tight">
-                <div className="font-serif text-2xl font-semibold text-ink-900">Fateh Hospital</div>
-                <div className="text-xs uppercase tracking-[0.18em] text-ink-400 font-medium">Women & Child Healthcare</div>
+                <div className="font-serif text-2xl font-semibold text-ink-900">Fatesh Hospital</div>
+                <div className="text-xs uppercase tracking-[0.18em] text-ink-400 font-medium">FH</div>
               </div>
             </div>
             <p className="mt-6 text-ink-500 max-w-md leading-relaxed">
@@ -77,13 +78,13 @@ export default function Footer() {
             <div className="mt-8 space-y-3 text-sm text-ink-700">
               <div className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 mt-0.5 text-blush-500 shrink-0" />
-                <span>214, Sector 12, Panchkula<br />Chandigarh, India — 160012</span>
+                <span>Sco 14, Sec- 125, Naval Market<br />Sunny Enclave, Mohali</span>
               </div>
-              <a href="tel:+919876543210" className="flex items-center gap-3 hover:text-blush-600 transition">
-                <Phone className="h-4 w-4 text-blush-500" /> +91 98765 43210  ·  Emergency: 108
+              <a href="tel:7087556657" className="flex items-center gap-3 hover:text-blush-600 transition">
+                <Phone className="h-4 w-4 text-blush-500" /> 70875-56657  ·  Alt: 94633-66657
               </a>
-              <a href="mailto:care@fatehhospital.in" className="flex items-center gap-3 hover:text-blush-600 transition">
-                <Mail className="h-4 w-4 text-blush-500" /> care@fatehhospital.in
+              <a href="mailto:info@ravihospital.com" className="flex items-center gap-3 hover:text-blush-600 transition">
+                <Mail className="h-4 w-4 text-blush-500" /> info@ravihospital.com
               </a>
             </div>
           </div>
@@ -93,7 +94,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-ink-500">
               {quick.map((q) => (
                 <li key={q.label}>
-                  <Link to={q.to} className="hover:text-blush-600 transition">{q.label}</Link>
+                  <Link href={q.to} className="hover:text-blush-600 transition">{q.label}</Link>
                 </li>
               ))}
             </ul>
@@ -104,7 +105,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-ink-500">
               {hospital.map((h) => (
                 <li key={h.label}>
-                  <Link to={h.to} className="hover:text-blush-600 transition">{h.label}</Link>
+                  <Link href={h.to} className="hover:text-blush-600 transition">{h.label}</Link>
                 </li>
               ))}
             </ul>
@@ -129,7 +130,7 @@ export default function Footer() {
         </div>
 
         <div className="py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-ink-400">
-          <div>© {new Date().getFullYear()} Fateh Hospital. Crafted with <Heart className="inline h-3.5 w-3.5 text-blush-500" /> for every family.</div>
+          <div>© {new Date().getFullYear()} Fatesh Hospital. All rights reserved.</div>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-ink-900 transition">Privacy</a>
             <a href="#" className="hover:text-ink-900 transition">Terms</a>

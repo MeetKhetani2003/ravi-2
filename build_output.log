@@ -1,0 +1,348 @@
+
+> react-vite-tailwind@0.0.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 13 errors:
+./src/app/about/page.tsx:4:1
+Module not found: Can't resolve '../components/ui'
+  [90m2 |[0m [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m3 |[0m [36mimport[0m { [33mAward[0m, [33mHeart[0m, [33mSparkles[0m, [33mUsers[0m, [33mLeaf[0m, [33mBuilding2[0m, [33mStethoscope[0m } [36m...[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m { [33mSection[0m, [33mSectionHeader[0m, [33mCard[0m } [36mfrom[0m [32m'../components/ui'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m { values, stats } [36mfrom[0m [32m'../data'[0m;
+  [90m6 |[0m
+  [90m7 |[0m [36mconst[0m timeline = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/about/page.tsx [Client Component Browser]
+    ./src/app/about/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/about/page.tsx [Client Component SSR]
+    ./src/app/about/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/appointment/page.tsx:6:1
+Module not found: Can't resolve '../components/ui'
+  [90m4 |[0m [36mimport[0m [33mLink[0m [36mfrom[0m [32m'next/link'[0m;
+  [90m5 |[0m [36mimport[0m { [33mCheck[0m, [33mArrowLeft[0m, [33mArrowRight[0m, [33mCalendar[0m, [33mClock[0m, [33mPhone[0m, [33mAlertCir...[0m
+[31m[1m>[0m [90m6 |[0m [36mimport[0m { [33mSection[0m, [33mCard[0m } [36mfrom[0m [32m'../components/ui'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m [36mimport[0m { doctors } [36mfrom[0m [32m'../data'[0m;
+  [90m8 |[0m
+  [90m9 |[0m [36mconst[0m concernOptions = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/appointment/page.tsx [Client Component Browser]
+    ./src/app/appointment/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/appointment/page.tsx [Client Component SSR]
+    ./src/app/appointment/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/contact/page.tsx:5:1
+Module not found: Can't resolve '../components/ui'
+  [90m3 |[0m [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m4 |[0m [36mimport[0m { [33mPhone[0m, [33mMail[0m, [33mMapPin[0m, [33mClock[0m, [33mMessageCircle[0m, [33mSend[0m, [33mHeart[0m } [36mfrom[0m [32m...[0m
+[31m[1m>[0m [90m5 |[0m [36mimport[0m { [33mSection[0m, [33mSectionHeader[0m, [33mCard[0m } [36mfrom[0m [32m'../components/ui'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mContact[0m() {
+  [90m8 |[0m   [36mconst[0m [form, setForm] = useState({ name: [32m''[0m, phone: [32m''[0m, email: [32m''[0m, co...
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/contact/page.tsx [Client Component Browser]
+    ./src/app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/contact/page.tsx [Client Component SSR]
+    ./src/app/contact/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/doctors/page.tsx:5:1
+Module not found: Can't resolve '../components/ui'
+  [90m3 |[0m [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m4 |[0m [36mimport[0m { [33mAward[0m, [33mStar[0m, [33mCalendar[0m, [33mClock[0m, [33mGraduationCap[0m, [33mHeart[0m, [33mArrowUpRig..[0m.
+[31m[1m>[0m [90m5 |[0m [36mimport[0m { [33mSection[0m, [33mSectionHeader[0m, [33mCard[0m } [36mfrom[0m [32m'../components/ui'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m { doctors } [36mfrom[0m [32m'../data'[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mDoctors[0m() {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/doctors/page.tsx [Client Component Browser]
+    ./src/app/doctors/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/doctors/page.tsx [Client Component SSR]
+    ./src/app/doctors/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/gallery/page.tsx:5:1
+Module not found: Can't resolve '../components/ui'
+  [90m3 |[0m [36mimport[0m { motion, [33mAnimatePresence[0m } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m4 |[0m [36mimport[0m { [33mX[0m, [33mZoomIn[0m } [36mfrom[0m [32m'lucide-react'[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m { [33mSection[0m } [36mfrom[0m [32m'../components/ui'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m { gallery } [36mfrom[0m [32m'../data'[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m categories = [[32m'All'[0m, [32m'Maternity'[0m, [32m'NICU'[0m, [32m'Pediatrics'[0m, [32m'Facility'[0m];
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/gallery/page.tsx [Client Component Browser]
+    ./src/app/gallery/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/gallery/page.tsx [Client Component SSR]
+    ./src/app/gallery/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/parent-corner/page.tsx:4:1
+Module not found: Can't resolve '../components/ui'
+  [90m2 |[0m [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m3 |[0m [36mimport[0m { [33mBookOpen[0m, [33mClock[0m, [33mArrowUpRight[0m, [33mSparkles[0m, [33mHeart[0m, [33mBaby[0m, [33mSyringe[0m,.[33m..[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m { [33mSection[0m, [33mSectionHeader[0m, [33mCard[0m } [36mfrom[0m [32m'../components/ui'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m { parentArticles } [36mfrom[0m [32m'../data'[0m;
+  [90m6 |[0m
+  [90m7 |[0m [36mconst[0m topicIcons: [33mRecord[0m<string, any> = {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/parent-corner/page.tsx [Client Component Browser]
+    ./src/app/parent-corner/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/parent-corner/page.tsx [Client Component SSR]
+    ./src/app/parent-corner/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/services/page.tsx:6:1
+Module not found: Can't resolve '../components/ui'
+  [90m4 |[0m [36mimport[0m { motion, [33mAnimatePresence[0m } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m5 |[0m [36mimport[0m { [33mCheck[0m, [33mChevronDown[0m, [33mPhone[0m, [33mArrowUpRight[0m, [33mShield[0m } [36mfrom[0m [32m'lucide...[0m
+[31m[1m>[0m [90m6 |[0m [36mimport[0m { [33mSection[0m, [33mSectionHeader[0m, [33mCard[0m } [36mfrom[0m [32m'../components/ui'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m [36mimport[0m { services } [36mfrom[0m [32m'../data'[0m;
+  [90m8 |[0m
+  [90m9 |[0m [36mconst[0m faqs = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/services/page.tsx [Client Component Browser]
+    ./src/app/services/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/services/page.tsx [Client Component SSR]
+    ./src/app/services/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/about/page.tsx:5:1
+Module not found: Can't resolve '../data'
+  [90m3 |[0m [36mimport[0m { [33mAward[0m, [33mHeart[0m, [33mSparkles[0m, [33mUsers[0m, [33mLeaf[0m, [33mBuilding2[0m, [33mStethoscope[0m } [36m...[0m
+  [90m4 |[0m [36mimport[0m { [33mSection[0m, [33mSectionHeader[0m, [33mCard[0m } [36mfrom[0m [32m'../components/ui'[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m { values, stats } [36mfrom[0m [32m'../data'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mconst[0m timeline = [
+  [90m8 |[0m   { year: [32m'2009'[0m, title: [32m'A quiet beginning'[0m, desc: [32m'Dr. Rupinder opens...[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/about/page.tsx [Client Component Browser]
+    ./src/app/about/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/about/page.tsx [Client Component SSR]
+    ./src/app/about/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/appointment/page.tsx:7:1
+Module not found: Can't resolve '../data'
+  [90m 5 |[0m [36mimport[0m { [33mCheck[0m, [33mArrowLeft[0m, [33mArrowRight[0m, [33mCalendar[0m, [33mClock[0m, [33mPhone[0m, [33mAlertCi...[0m
+  [90m 6 |[0m [36mimport[0m { [33mSection[0m, [33mCard[0m } [36mfrom[0m [32m'../components/ui'[0m;
+[31m[1m>[0m [90m 7 |[0m [36mimport[0m { doctors } [36mfrom[0m [32m'../data'[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m 8 |[0m
+  [90m 9 |[0m [36mconst[0m concernOptions = [
+  [90m10 |[0m   { id: [32m'maternity'[0m, label: [32m'Pregnancy / Maternity'[0m, icon: [32m'🤱'[0m },
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/appointment/page.tsx [Client Component Browser]
+    ./src/app/appointment/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/appointment/page.tsx [Client Component SSR]
+    ./src/app/appointment/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/doctors/page.tsx:6:1
+Module not found: Can't resolve '../data'
+  [90m4 |[0m [36mimport[0m { [33mAward[0m, [33mStar[0m, [33mCalendar[0m, [33mClock[0m, [33mGraduationCap[0m, [33mHeart[0m, [33mArrowUpRig..[0m.
+  [90m5 |[0m [36mimport[0m { [33mSection[0m, [33mSectionHeader[0m, [33mCard[0m } [36mfrom[0m [32m'../components/ui'[0m;
+[31m[1m>[0m [90m6 |[0m [36mimport[0m { doctors } [36mfrom[0m [32m'../data'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m
+  [90m8 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mDoctors[0m() {
+  [90m9 |[0m   [36mreturn[0m (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/doctors/page.tsx [Client Component Browser]
+    ./src/app/doctors/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/doctors/page.tsx [Client Component SSR]
+    ./src/app/doctors/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/gallery/page.tsx:6:1
+Module not found: Can't resolve '../data'
+  [90m4 |[0m [36mimport[0m { [33mX[0m, [33mZoomIn[0m } [36mfrom[0m [32m'lucide-react'[0m;
+  [90m5 |[0m [36mimport[0m { [33mSection[0m } [36mfrom[0m [32m'../components/ui'[0m;
+[31m[1m>[0m [90m6 |[0m [36mimport[0m { gallery } [36mfrom[0m [32m'../data'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m categories = [[32m'All'[0m, [32m'Maternity'[0m, [32m'NICU'[0m, [32m'Pediatrics'[0m, [32m'Facility'[0m];
+  [90m9 |[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/gallery/page.tsx [Client Component Browser]
+    ./src/app/gallery/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/gallery/page.tsx [Client Component SSR]
+    ./src/app/gallery/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/parent-corner/page.tsx:5:1
+Module not found: Can't resolve '../data'
+  [90m3 |[0m [36mimport[0m { [33mBookOpen[0m, [33mClock[0m, [33mArrowUpRight[0m, [33mSparkles[0m, [33mHeart[0m, [33mBaby[0m, [33mSyringe[0m,.[33m..[0m
+  [90m4 |[0m [36mimport[0m { [33mSection[0m, [33mSectionHeader[0m, [33mCard[0m } [36mfrom[0m [32m'../components/ui'[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m { parentArticles } [36mfrom[0m [32m'../data'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mconst[0m topicIcons: [33mRecord[0m<string, any> = {
+  [90m8 |[0m   [33mPregnancy[0m: [33mHeart[0m,
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/parent-corner/page.tsx [Client Component Browser]
+    ./src/app/parent-corner/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/parent-corner/page.tsx [Client Component SSR]
+    ./src/app/parent-corner/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/services/page.tsx:7:1
+Module not found: Can't resolve '../data'
+  [90m 5 |[0m [36mimport[0m { [33mCheck[0m, [33mChevronDown[0m, [33mPhone[0m, [33mArrowUpRight[0m, [33mShield[0m } [36mfrom[0m [32m'lucid...[0m
+  [90m 6 |[0m [36mimport[0m { [33mSection[0m, [33mSectionHeader[0m, [33mCard[0m } [36mfrom[0m [32m'../components/ui'[0m;
+[31m[1m>[0m [90m 7 |[0m [36mimport[0m { services } [36mfrom[0m [32m'../data'[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m 8 |[0m
+  [90m 9 |[0m [36mconst[0m faqs = [
+  [90m10 |[0m   { q: [32m'Do you support painless delivery?'[0m, a: [32m'Yes. Our anaesthesia t...[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/services/page.tsx [Client Component Browser]
+    ./src/app/services/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/services/page.tsx [Client Component SSR]
+    ./src/app/services/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (./src/app/about/page.tsx:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/appointment/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/contact/page.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/doctors/page.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/gallery/page.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/parent-corner/page.tsx:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/services/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/about/page.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/appointment/page.tsx:7:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/doctors/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/gallery/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/parent-corner/page.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/services/page.tsx:7:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)

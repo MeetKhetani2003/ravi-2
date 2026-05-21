@@ -2,13 +2,13 @@ export const doctors = [
   {
     id: 'rupinder-kaur',
     name: 'Dr. Rupinder Kaur',
-    role: 'Senior Consultant · OBS & GYNAE',
-    specialties: ['Fertility Specialist', 'High-Risk Pregnancy', 'Laparoscopic Surgery'],
-    experience: '18+ Years',
-    patients: '12,400+',
-    deliveries: '6,800+',
-    bio: 'A warm and deeply respected obstetrician, Dr. Rupinder has guided thousands of mothers through the most precious chapter of their lives. Trained at AIIMS and fellow of IFS, she is known for her patient-first approach and hands-on care during complex pregnancies.',
-    qualifications: ['MBBS · AIIMS Delhi', 'MS Obstetrics & Gynaecology', 'Fellow · Indian Fertility Society', 'Member · FOGSI'],
+    role: 'Medical Director',
+    specialties: ['Obstetrics & Gynaecology', 'Fertility'],
+    experience: '15+ Years',
+    patients: '10,000+',
+    deliveries: '5,000+',
+    bio: 'Leading the maternity and gynaecology departments with compassion and expertise. A warm and deeply respected obstetrician, Dr. Rupinder has guided thousands of mothers through the most precious chapter of their lives.',
+    qualifications: ['MBBS', 'MS Obstetrics & Gynaecology', 'Fellow · Indian Fertility Society', 'Member · FOGSI'],
     image: 'https://images.pexels.com/photos/19357672/pexels-photo-19357672.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
     accent: 'from-blush-400 to-blush-600',
     schedule: ['Mon · 10 AM – 2 PM', 'Tue · 10 AM – 2 PM', 'Thu · 10 AM – 2 PM', 'Sat · 10 AM – 1 PM'],
@@ -16,13 +16,13 @@ export const doctors = [
   {
     id: 'mrigind-singh',
     name: 'Dr. Mrigind Singh',
-    role: 'Consultant Neonatologist & Pediatrician',
-    specialties: ['Neonatology', 'Pediatric ICU', 'Developmental Pediatrics'],
-    experience: '14+ Years',
-    patients: '9,200+',
+    role: 'Managing Director',
+    specialties: ['Pediatrics', 'Neonatology'],
+    experience: '15+ Years',
+    patients: '10,000+',
     nicu: '4,100+',
-    bio: 'Dr. Mrigind brings rare tenderness and sharp clinical instinct to every tiny patient. A fellowship-trained neonatologist, he leads the NICU at Fateh with a philosophy of gentle, family-centred care — because the smallest patients deserve the most thoughtful medicine.',
-    qualifications: ['MBBS · PGIMER Chandigarh', 'MD Pediatrics', 'Fellowship · Neonatology (IAP)', 'NNF Certified'],
+    bio: 'Visionary leader dedicated to providing world-class pediatric care close to home. Dr. Mrigind brings rare tenderness and sharp clinical instinct to every tiny patient.',
+    qualifications: ['MBBS', 'MD Pediatrics', 'Fellowship · Neonatology (IAP)', 'NNF Certified'],
     image: 'https://images.pexels.com/photos/19357674/pexels-photo-19357674.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
     accent: 'from-sky-400 to-sky-600',
     schedule: ['Mon · 4 PM – 8 PM', 'Wed · 10 AM – 2 PM', 'Fri · 4 PM – 8 PM', 'Sun · On-call'],
@@ -114,23 +114,23 @@ export const services = [
 
 export const testimonials = [
   {
-    name: 'Ananya & Rohan Sharma',
-    role: 'First-time parents',
-    quote: 'Fateh made our first birth feel sacred. Dr. Rupinder held my hand through every contraction. The birthing suite, the nurses, the quiet dignity — it was everything we hoped for.',
+    name: 'Deep Bhullar',
+    role: 'Parent',
+    quote: 'Very good experince With Dr Rupinder kaur & Dr Mrigind. Both Doctors help us in very professional & in calm way. I will recomend all to visit Dr Rupinder.',
     rating: 5,
     image: 'https://images.pexels.com/photos/10935456/pexels-photo-10935456.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=400',
   },
   {
-    name: 'Meera Kapoor',
-    role: 'Mother of twins',
-    quote: 'Our twins arrived at 32 weeks. Dr. Mrigind and the NICU team gave us 18 days of hope, transparency, and miracles. Today, our boys are thriving. We owe them everything.',
+    name: 'Neha Parjapati',
+    role: 'Patient',
+    quote: 'The doctor nd staff is very cooperative...the listen to the patient very calmly... Good experience nd nice doctor.',
     rating: 5,
     image: 'https://images.pexels.com/photos/10956983/pexels-photo-10956983.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=400',
   },
   {
-    name: 'Priya Desai',
-    role: 'IVF journey',
-    quote: 'After 4 years of trying, Fateh became our home. The fertility team never rushed us, never judged us. Our daughter is 14 months old today — and she is our whole world.',
+    name: 'Peter Kite',
+    role: 'Parent',
+    quote: 'Experienced dr both for kids and mothers available under one roof. We rely on Ravi Clinic. They have another set up in ph2 as well.',
     rating: 5,
     image: 'https://images.pexels.com/photos/6849619/pexels-photo-6849619.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=400',
   },
@@ -144,10 +144,10 @@ export const values = [
 ];
 
 export const stats = [
-  { value: '15+', label: 'Years of trusted care' },
-  { value: '22K+', label: 'Babies welcomed' },
-  { value: '40+', label: 'Specialists on staff' },
-  { value: '98%', label: 'Patient satisfaction' },
+  { value: '15+', label: 'Years of Excellence' },
+  { value: '10K+', label: 'Happy Patients' },
+  { value: '20+', label: 'Specialist Doctors' },
+  { value: '99.9%', label: 'Success Rate' },
 ];
 
 export const gallery = [
@@ -219,3 +219,19 @@ export const parentArticles = [
     image: 'https://images.pexels.com/photos/31905447/pexels-photo-31905447.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1000',
   },
 ];
+export const HOSPITAL_INFO = {
+  name: "RAVI MOTHER & CHILD HOSPITAL",
+  shortName: "FH",
+  phones: ["7087556657", "9463366657"],
+  address: "Sco 14, Sec- 125, Naval Market, Sunny Enclave, Mohali",
+  mission: "FH aims to provide best of care close to home.",
+  vision: "To be the most trusted brand in providing maternal, newborn and pediatric care services",
+  coreValues: [
+    "Ethical Conduct",
+    "Professional Integrity",
+    "Accountability",
+    "Patient Centric Care"
+  ],
+  aboutText: "Fatesh Hospital (FH) provides excellent care to obstetric, gynaecological and pediatric patients. Our expertise is the result of hard working, experienced & sincere consultants providing round the clock services. At FH, we strive to give a personalized service, warm welcome and expert care to all our patrons. We are there for you to provide solutions at every stage of your life."
+};
+
