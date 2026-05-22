@@ -58,16 +58,11 @@ export default function Navbar() {
         <nav className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="flex items-center justify-between h-20">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative h-11 w-11 rounded-2xl bg-gradient-to-br from-blush-400 via-blush-500 to-blush-600 grid place-items-center shadow-lg shadow-blush-200 group-hover:scale-105 transition">
-                <svg viewBox="0 0 24 24" className="h-6 w-6 text-white" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 21s-7-4.5-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-7 10-7 10" transform="translate(-2 0)" />
-                </svg>
-                <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-sky-300 ring-2 ring-white" />
-              </div>
-              <div className="leading-tight">
-                <div className="font-serif text-xl font-semibold tracking-tight text-ink-900">FH<span className="text-blush-500">.</span></div>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-medium">Mother & Child</div>
-              </div>
+              <img 
+                src="/logo.png" 
+                alt="Fateh Hospital Logo" 
+                className="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
+              />
             </Link>
 
             <div className="hidden lg:flex items-center gap-1">

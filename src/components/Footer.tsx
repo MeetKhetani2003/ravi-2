@@ -61,15 +61,11 @@ export default function Footer() {
         <div className="grid lg:grid-cols-12 gap-12 pb-12 border-b border-ink-900/10">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3">
-              <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-blush-400 to-blush-600 grid place-items-center shadow-lg shadow-blush-200">
-                <svg viewBox="0 0 24 24" className="h-6 w-6 text-white" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 21s-7-4.5-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-7 10-7 10" transform="translate(-2 0)" />
-                </svg>
-              </div>
-              <div className="leading-tight">
-                <div className="font-serif text-2xl font-semibold text-ink-900">Fatesh Hospital</div>
-                <div className="text-xs uppercase tracking-[0.18em] text-ink-400 font-medium">FH</div>
-              </div>
+              <img 
+                src="/logo.png" 
+                alt="Fateh Hospital Logo" 
+                className="h-14 w-auto object-contain" 
+              />
             </div>
             <p className="mt-6 text-ink-500 max-w-md leading-relaxed">
               A sanctuary of compassion and medical excellence — where every mother and child receives care that feels like home.
