@@ -165,14 +165,14 @@ export default function Contact() {
           <div className="rounded-[40px] overflow-hidden shadow-xl shadow-blush-200/30 aspect-[16/9] lg:aspect-[21/9] relative">
             <iframe
               title="FH Location"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=76.68%2C30.68%2C76.75%2C30.75&layer=mapnik"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=76.490%2C30.787%2C76.500%2C30.797&layer=mapnik&marker=30.7923203%2C76.4951248"
               className="absolute inset-0 h-full w-full"
               loading="lazy"
             />
             <div className="absolute bottom-6 left-6 glass rounded-2xl p-5 max-w-xs">
               <div className="font-serif text-lg font-semibold text-ink-900">Fatesh Hospital</div>
               <div className="text-sm text-ink-500 mt-1">Sco 14, Sec- 125, Naval Market, Sunny Enclave</div>
-              <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-blush-600">
+              <a href="https://www.google.com/maps/search/Fateh%20Hospital/@30.792320251464844,76.49512481689453,17z?hl=en" target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-blush-600">
                 Open in Maps →
               </a>
             </div>

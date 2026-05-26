@@ -102,6 +102,23 @@ export const SPECIALITIES = [
 
 export const DOCTORS = [
   {
+    id: "dr-lakhveer-singh",
+    name: "Dr. Lakhveer Singh",
+    designation: "Consultant",
+    qualifications: "MBBS, MD",
+    experienceDesc: "A dedicated doctor committed to providing compassionate and comprehensive care to patients, ensuring their health and well-being.",
+    experienceList: [
+      "Consultant at FH"
+    ],
+    training: [],
+    memberships: [],
+    rating: 4.9,
+    location: "Mohali (FH & Sunny Enclave)",
+    experienceYears: "10+",
+    publications: [],
+    image: "/doctors/Dr lakhveer singh.jpeg"
+  },
+  {
     id: "dr-mrigind-singh",
     name: "Dr. Mrigind Singh",
     designation: "Consultant Neonatologist",
@@ -123,7 +140,7 @@ export const DOCTORS = [
       "Case report on 'Pseudotumor Cerebri' (IJMRP; 2016)",
       "Case report on 'Mauriac Syndrome' (JOMR; 2015)"
     ],
-    image: "/hero_pediatrician_1778827121694.png"
+    image: "/doctors/dr-mrigind-singh.jpeg"
   },
   {
     id: "dr-rupinder-kaur",
@@ -147,7 +164,7 @@ export const DOCTORS = [
       "Original research article on 'AST- IS IT useful as a biochemical marker' (JEBMH; 2016)",
       "Original research article on 'Significance of LDH and AST' (JEBMH; 2017)"
     ],
-    image: "/hero_mother_child_1778827102322.png"
+    image: "/doctors/dr-rupinder-kaur.jpeg"
   }
 ];
 
@@ -247,8 +264,9 @@ export const HOW_IT_WORKS = [
 ];
 
 export const LEADERSHIP = [
-  { name: "Dr. Mrigind Singh", role: "Managing Director", image: "/doctors/dr-mrigind-singh.png", bio: "Visionary leader dedicated to providing world-class pediatric care close to home." },
-  { name: "Dr. Rupinder Kaur", role: "Medical Director", image: "/doctors/dr-rupinder-kaur.png", bio: "Leading the maternity and gynaecology departments with compassion and expertise." }
+  { name: "Dr. Lakhveer Singh", role: "Consultant", image: "/doctors/Dr lakhveer singh.jpeg", bio: "A dedicated doctor committed to providing compassionate care." },
+  { name: "Dr. Mrigind Singh", role: "Managing Director", image: "/doctors/dr-mrigind-singh.jpeg", bio: "Visionary leader dedicated to providing world-class pediatric care close to home." },
+  { name: "Dr. Rupinder Kaur", role: "Medical Director", image: "/doctors/dr-rupinder-kaur.jpeg", bio: "Leading the maternity and gynaecology departments with compassion and expertise." }
 ];
 
 export const PARTNERS = [
