@@ -4,10 +4,10 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import {
   Heart, Shield, Stethoscope, Baby, Sparkles, Star, Phone, Calendar,
-  ArrowUpRight, Clock, Award, Users, Activity, ChevronRight, ChevronLeft, Quote, ShieldCheck, MapPin, CheckCircle2, Image as ImageIcon, Plus, Minus, Microscope, ArrowRight
+  ArrowUpRight, Clock, Award, Users, Activity, ChevronRight, ChevronLeft, Quote, ShieldCheck, MapPin, CheckCircle2, Image as ImageIcon, Plus, Minus, Microscope, ArrowRight, MessageCircle
 } from 'lucide-react';
 import { Section, SectionHeader, Card } from '@/components/ui';
-import { services, doctors, testimonials, stats } from '@/data';
+import { services, doctors, testimonials, stats, HOSPITAL_INFO } from '@/data';
 
 function Counter({ to, suffix = '' }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -57,8 +57,8 @@ const HOW_IT_WORKS = [
 ];
 
 const LEADERSHIP = [
-  { name: "Dr. Mrigind Singh", role: "Managing Director", image: "/hero_pediatrician_1778827121694.png", bio: "Visionary leader dedicated to providing world-class pediatric care close to home." },
-  { name: "Dr. Rupinder Kaur", role: "Medical Director", image: "/hero_mother_child_1778827102322.png", bio: "Leading the maternity and gynaecology departments with compassion and expertise." }
+  { name: "Dr. Mrigind Singh", role: "Managing Director", image: "/doctors/dr-mrigind-singh.jpeg", bio: "Visionary leader dedicated to providing world-class pediatric care close to home." },
+  { name: "Dr. Rupinder Kaur", role: "Medical Director", image: "/doctors/dr-rupinder-kaur.jpeg", bio: "Leading the maternity and gynaecology departments with compassion and expertise." }
 ];
 
 const FAQS = [
@@ -88,10 +88,10 @@ const SERVICE_LOCATIONS = [
 ];
 
 const GALLERY_IMAGES = [
-  "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1538108149393-cebb47ac50bc?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=800&q=80"
+  "https://images.pexels.com/photos/30282653/pexels-photo-30282653.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+  "https://images.pexels.com/photos/32830266/pexels-photo-32830266.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+  "https://images.pexels.com/photos/11782003/pexels-photo-11782003.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+  "https://images.pexels.com/photos/19357676/pexels-photo-19357676.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800"
 ];
 
 const SPECIALITIES = [
@@ -794,6 +794,52 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ========= BRANCHES ========= */}
+      <Section className="bg-blush-50/30">
+        <SectionHeader eyebrow="Our Network" title={<>Other Branches</>} center />
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
+          {HOSPITAL_INFO?.branches?.map((branch, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+            >
+              <Card className="p-8 h-full flex flex-col items-center text-center">
+                {branch.logo && <img src={branch.logo} alt={branch.name} className="h-20 w-auto object-contain mb-6" />}
+                <h4 className="font-serif text-2xl font-bold text-ink-900">{branch.name}</h4>
+                <p className="text-ink-500 font-medium text-sm mt-1">{branch.location}</p>
+                <p className="text-ink-600 mt-4 leading-relaxed max-w-xs mx-auto flex-grow">{branch.description}</p>
+                
+                <div className="mt-8 pt-6 border-t border-blush-100 w-full">
+                  <div className="flex flex-col items-center gap-2">
+                    {branch.whatsapp && (
+                      <>
+                        <span className="text-xs uppercase tracking-widest font-bold text-blush-500">WhatsApp</span>
+                        <a href={`https://wa.me/91${branch.whatsapp}`} className="inline-flex items-center gap-2 font-semibold text-lg text-ink-900 hover:text-blush-600 transition">
+                          <MessageCircle className="h-5 w-5 text-green-500" />
+                          {branch.whatsapp}
+                        </a>
+                      </>
+                    )}
+                    {branch.mobile && (
+                      <>
+                        <span className="text-xs uppercase tracking-widest font-bold text-blush-500">Mobile</span>
+                        <a href={`tel:${branch.mobile}`} className="inline-flex items-center gap-2 font-semibold text-lg text-ink-900 hover:text-blush-600 transition">
+                          <Phone className="h-5 w-5 text-blush-500" />
+                          {branch.mobile}
+                        </a>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
 
       {/* ========= SERVICE AREAS ========= */}
       <Section>
