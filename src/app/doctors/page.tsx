@@ -36,7 +36,8 @@ export default function Doctors() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ delay: i * 0.1 }}
-              className={`rounded-[40px] overflow-hidden border border-blush-100/60 bg-white shadow-[0_20px_60px_-20px_rgba(255,125,163,0.25)] grid lg:grid-cols-12 gap-0 ${i % 2 === 1 ? 'lg:[&>div:first-child]:order-2' : ''}`}
+              className={`rounded-[40px] overflow-hidden border border-blush-100/60 bg-white shadow-[0_20px_60px_-20px_rgba(255,125,163,0.25)] grid lg:grid-cols-12 gap-0 cursor-pointer hover:-translate-y-2 hover:shadow-[0_30px_70px_-20px_rgba(255,125,163,0.35)] transition-all duration-500 ${i % 2 === 1 ? 'lg:[&>div:first-child]:order-2' : ''}`}
+              onClick={() => window.location.href = `/doctor/dr-${doc.id}`}
             >
               {/* Image */}
               <div className="lg:col-span-5 relative">
@@ -119,6 +120,7 @@ export default function Doctors() {
                   <div className="md:col-span-2 grid grid-cols-2 gap-2">
                     <Link
                       href={`/doctor/dr-${doc.id}`}
+                      onClick={(e) => e.stopPropagation()}
                       className="rounded-2xl bg-white/50 border border-blush-100 text-ink-900 p-4 hover:bg-white transition flex flex-col justify-between"
                     >
                       <div>
@@ -129,6 +131,7 @@ export default function Doctors() {
                     </Link>
                     <Link
                       href="/appointment"
+                      onClick={(e) => e.stopPropagation()}
                       className="rounded-2xl bg-ink-900 text-white p-4 hover:bg-ink-800 transition flex flex-col justify-between"
                     >
                       <div>

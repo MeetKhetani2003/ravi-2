@@ -15,6 +15,22 @@ export const HOSPITAL_INFO = {
     "Accountability",
     "Patient Centric Care"
   ],
+  branches: [
+    {
+      name: "Fateh Children Hospital",
+      location: "Ropar",
+      description: "Exclusive children's hospital.",
+      whatsapp: "7888741037",
+      type: "Pediatrics"
+    },
+    {
+      name: "Fateh Mediclinic",
+      location: "Chamkaur Sahib",
+      description: "General mediclinic providing expert care.",
+      mobile: "9877264696",
+      type: "Mediclinic"
+    }
+  ],
   aboutText: "Fatesh Hospital (FH) provides excellent care to obstetric, gynaecological and pediatric patients. Our expertise is the result of hard working, experienced & sincere consultants providing round the clock services. At FH, we strive to give a personalized service, warm welcome and expert care to all our patrons. We are there for you to provide solutions at every stage of your life."
 };
 

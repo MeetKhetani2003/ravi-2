@@ -1,6 +1,6 @@
 "use client";
 import { motion } from 'framer-motion';
-import { Award, Heart, Sparkles, Users, Clock, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Award, Heart, Sparkles, Users, Clock, ShieldCheck, CheckCircle2, MessageCircle, Phone, MapPin } from 'lucide-react';
 import { Section, SectionHeader, Card } from '@/components/ui';
 import { HOSPITAL_INFO } from '@/data';
 
@@ -185,6 +185,52 @@ export default function About() {
                 <h4 className="text-lg font-serif font-semibold text-ink-900 mb-4">{value}</h4>
                 <div className="w-10 h-1 bg-blush-200 mx-auto rounded-full group-hover:w-16 group-hover:bg-blush-500 transition-all duration-500"></div>
               </div>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Branches */}
+      <Section className="bg-white">
+        <SectionHeader eyebrow="Our Network" title={<>Other Branches</>} center />
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
+          {HOSPITAL_INFO.branches?.map((branch, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+            >
+              <Card className="p-8 h-full flex flex-col items-center text-center">
+                {branch.logo && <img src={branch.logo} alt={branch.name} className="h-20 w-auto object-contain mb-6" />}
+                <h4 className="font-serif text-2xl font-bold text-ink-900">{branch.name}</h4>
+                <p className="text-ink-500 font-medium text-sm mt-1">{branch.location}</p>
+                <p className="text-ink-600 mt-4 leading-relaxed max-w-xs mx-auto flex-grow">{branch.description}</p>
+                
+                <div className="mt-8 pt-6 border-t border-blush-100 w-full">
+                  <div className="flex flex-col items-center gap-2">
+                    {branch.whatsapp && (
+                      <>
+                        <span className="text-xs uppercase tracking-widest font-bold text-blush-500">WhatsApp</span>
+                        <a href={`https://wa.me/91${branch.whatsapp}`} className="inline-flex items-center gap-2 font-semibold text-lg text-ink-900 hover:text-blush-600 transition">
+                          <MessageCircle className="h-5 w-5 text-green-500" />
+                          {branch.whatsapp}
+                        </a>
+                      </>
+                    )}
+                    {branch.mobile && (
+                      <>
+                        <span className="text-xs uppercase tracking-widest font-bold text-blush-500">Mobile</span>
+                        <a href={`tel:${branch.mobile}`} className="inline-flex items-center gap-2 font-semibold text-lg text-ink-900 hover:text-blush-600 transition">
+                          <Phone className="h-5 w-5 text-blush-500" />
+                          {branch.mobile}
+                        </a>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </Card>
             </motion.div>
           ))}
         </div>

@@ -159,6 +159,57 @@ export default function Contact() {
         </div>
       </Section>
 
+      {/* Branches */}
+      <Section className="bg-blush-50/30">
+        <SectionHeader eyebrow="Our Network" title={<>Other Branches</>} center />
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
+          {/* Note: In a real app we'd import HOSPITAL_INFO here, but since it's hard to import correctly without knowing the exact relative path if there are aliasing issues, we'll hardcode or we can import from '@/data' */}
+          {[
+            {
+              name: "Fateh Children Hospital",
+              location: "Ropar",
+              description: "Only children hospital",
+              contactLabel: "WhatsApp",
+              contactInfo: "7888741037",
+              logo: "/branch_fch.png"
+            },
+            {
+              name: "Fateh Mediclinic",
+              location: "Chamkaur Sahib",
+              description: "Best of care, close to home",
+              contactLabel: "Mobile",
+              contactInfo: "9877264696",
+              logo: "/branch_mediclinic.png"
+            }
+          ].map((branch, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+            >
+              <Card className="p-8 h-full flex flex-col items-center text-center">
+                <img src={branch.logo} alt={branch.name} className="h-20 w-auto object-contain mb-6" />
+                <h4 className="font-serif text-2xl font-bold text-ink-900">{branch.name}</h4>
+                <p className="text-ink-500 font-medium text-sm mt-1">{branch.location}</p>
+                <p className="text-ink-600 mt-4 leading-relaxed max-w-xs mx-auto flex-grow">{branch.description}</p>
+                
+                <div className="mt-8 pt-6 border-t border-blush-100 w-full">
+                  <div className="flex flex-col items-center gap-2">
+                    <span className="text-xs uppercase tracking-widest font-bold text-blush-500">{branch.contactLabel}</span>
+                    <a href={branch.contactLabel === 'WhatsApp' ? `https://wa.me/91${branch.contactInfo}` : `tel:${branch.contactInfo}`} className="inline-flex items-center gap-2 font-semibold text-lg text-ink-900 hover:text-blush-600 transition">
+                      {branch.contactLabel === 'WhatsApp' ? <MessageCircle className="h-5 w-5 text-green-500" /> : <Phone className="h-5 w-5 text-blush-500" />}
+                      {branch.contactInfo}
+                    </a>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+      
       {/* Map */}
       <section className="relative pb-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">

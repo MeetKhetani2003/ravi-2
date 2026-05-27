@@ -548,7 +548,7 @@ export default function Home() {
           center
         />
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {doctors.map((doc, i) => (
             <motion.div
               key={doc.id}
@@ -556,8 +556,10 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15 }}
+              onClick={() => window.location.href = `/doctor/dr-${doc.id}`}
+              className="cursor-pointer group"
             >
-              <Card className="p-2 overflow-hidden">
+              <Card className="p-2 overflow-hidden group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-300">
                 <div className="relative aspect-[4/5] rounded-[28px] overflow-hidden">
                   <img src={doc.image} alt={doc.name} className="absolute inset-0 h-full w-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-ink-900/20 to-transparent" />
@@ -581,7 +583,7 @@ export default function Home() {
                     </div>
                     <span className="text-ink-500">5.0 · 400+ reviews</span>
                   </div>
-                  <Link href="/doctors" className="text-sm font-semibold text-blush-600 hover:text-blush-700 flex items-center gap-1">
+                  <Link href={`/doctor/dr-${doc.id}`} onClick={(e) => e.stopPropagation()} className="text-sm font-semibold text-blush-600 hover:text-blush-700 flex items-center gap-1">
                     Profile <ArrowUpRight className="h-3.5 w-3.5" />
                   </Link>
                 </div>
