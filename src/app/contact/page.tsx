@@ -45,8 +45,8 @@ export default function Contact() {
             <div className="mt-3 font-serif text-3xl lg:text-4xl font-semibold">Maternity or NICU emergency?</div>
             <div className="text-white/85 mt-2">Call now — a senior specialist answers within 60 seconds.</div>
           </div>
-          <a href="tel:7087556657" className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white text-ink-900 px-8 py-4 font-semibold hover:scale-105 transition">
-            <Phone className="h-5 w-5" /> 70875-56657
+          <a href="tel:7888741037" className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white text-ink-900 px-8 py-4 font-semibold hover:scale-105 transition">
+            <Phone className="h-5 w-5" /> 78887-41037
           </a>
         </div>
       </div>
@@ -57,8 +57,8 @@ export default function Contact() {
           {/* Info cards */}
           <div className="lg:col-span-5 space-y-4">
             {[
-              { icon: MapPin, title: 'Visit us', lines: ['Sco 14, Sec- 125, Naval Market', 'Sunny Enclave, Mohali'], accent: 'from-blush-400 to-blush-600' },
-              { icon: Phone, title: 'Call us', lines: ['General: 70875-56657', 'Alt: 94633-66657'], accent: 'from-sky-400 to-blue-500' },
+              { icon: MapPin, title: 'Visit us', lines: ['Dholan Majra Chowk, Old Plaza Building', 'Old Chandigarh-Morinda Road, Morinda'], accent: 'from-blush-400 to-blush-600' },
+              { icon: Phone, title: 'Call us', lines: ['General: 78887-41037', 'Alt: 94633-66657'], accent: 'from-sky-400 to-blue-500' },
               { icon: Mail, title: 'Write to us', lines: ['info@ravihospital.com'], accent: 'from-emerald-400 to-teal-500' },
               { icon: Clock, title: 'Working hours', lines: ['OPD: Mon–Sat · 9 AM – 8 PM', 'Maternity, NICU, Emergency: 24/7'], accent: 'from-amber-400 to-orange-500' },
             ].map((item, i) => (
@@ -85,7 +85,7 @@ export default function Contact() {
 
             {/* WhatsApp */}
             <a
-              href="https://wa.me/917087556657"
+              href="https://wa.me/917888741037"
               target="_blank"
               rel="noreferrer"
               className="block rounded-[28px] bg-gradient-to-br from-green-500 to-green-600 text-white p-6 hover:scale-[1.01] transition"
@@ -222,7 +222,7 @@ export default function Contact() {
             />
             <div className="absolute bottom-6 left-6 glass rounded-2xl p-5 max-w-xs">
               <div className="font-serif text-lg font-semibold text-ink-900">Fatesh Hospital</div>
-              <div className="text-sm text-ink-500 mt-1">Sco 14, Sec- 125, Naval Market, Sunny Enclave</div>
+              <div className="text-sm text-ink-500 mt-1">Dholan Majra Chowk, Old Plaza Building, Morinda</div>
               <a href="https://www.google.com/maps/search/Fateh%20Hospital/@30.792320251464844,76.49512481689453,17z?hl=en" target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-blush-600">
                 Open in Maps →
               </a>

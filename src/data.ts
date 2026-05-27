@@ -165,7 +165,7 @@ export const stats = [
 
 export const gallery = [
   { url: 'https://images.pexels.com/photos/30282653/pexels-photo-30282653.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800', title: 'Delivery Suite', cat: 'Maternity', tall: true },
-  { url: 'https://images.pexels.com/photos/32830266/pexels-photo-32830266.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800', title: 'Gynecology Wing', cat: 'Facility' },
+  { url: 'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&q=80', title: 'Gynecology Wing', cat: 'Facility' },
   { url: 'https://images.pexels.com/photos/3259628/pexels-photo-3259628.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800', title: 'First Moments', cat: 'Maternity' },
   { url: 'https://images.pexels.com/photos/11782003/pexels-photo-11782003.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800', title: 'Private Room', cat: 'Facility', tall: true },
   { url: 'https://images.pexels.com/photos/19963969/pexels-photo-19963969.png?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800', title: 'Newborn Care', cat: 'NICU' },
@@ -235,8 +235,8 @@ export const parentArticles = [
 export const HOSPITAL_INFO = {
   name: "RAVI MOTHER & CHILD HOSPITAL",
   shortName: "FH",
-  phones: ["7087556657", "9463366657"],
-  address: "Sco 14, Sec- 125, Naval Market, Sunny Enclave, Mohali",
+  phones: ["7888741037", "9463366657"],
+  address: "Dholan Majra Chowk, Old Plaza Building, Old Chandigarh-Morinda Road, Morinda. M : 7888741037 Not For Medicolegal Purpose",
   mission: "FH aims to provide best of care close to home.",
   vision: "To be the most trusted brand in providing maternal, newborn and pediatric care services",
   coreValues: [

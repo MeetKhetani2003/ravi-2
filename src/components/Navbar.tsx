@@ -38,12 +38,12 @@ export default function Navbar() {
       <div className="hidden md:block border-b border-blush-100/60 bg-gradient-to-r from-blush-50 via-white to-sky-50">
         <div className="mx-auto max-w-7xl px-6 py-2 flex items-center justify-between text-[13px] text-ink-700">
           <div className="flex items-center gap-6">
-            <span className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5 text-blush-500" /> Sunny Enclave, Mohali</span>
+            <span className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5 text-blush-500" /> Dholan Majra Chowk, Morinda</span>
             <span className="flex items-center gap-2"><Heart className="h-3.5 w-3.5 text-blush-500" /> 24/7 Emergency Maternity Care</span>
           </div>
           <div className="flex items-center gap-4">
-            <a href="tel:7087556657" className="flex items-center gap-2 hover:text-blush-600 transition">
-              <Phone className="h-3.5 w-3.5" /> 70875-56657
+            <a href="tel:7888741037" className="flex items-center gap-2 hover:text-blush-600 transition">
+              <Phone className="h-3.5 w-3.5" /> 78887-41037
             </a>
           </div>
         </div>

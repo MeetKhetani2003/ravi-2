@@ -14,7 +14,7 @@ export function WhatsAppFloat() {
     <AnimatePresence>
       {show && (
         <motion.a
-          href="https://wa.me/917087556657"
+          href="https://wa.me/917888741037"
           target="_blank"
           rel="noreferrer"
           initial={{ scale: 0, opacity: 0 }}
@@ -39,7 +39,7 @@ export function EmergencyStrip() {
       <div className="relative flex items-center justify-center gap-3 px-4 flex-wrap">
         <span className="inline-flex h-2 w-2 rounded-full bg-white animate-pulse" />
         <span>24/7 Emergency Maternity & NICU — Call now:</span>
-        <a href="tel:7087556657" className="font-bold underline underline-offset-4 decoration-2">70875-56657</a>
+        <a href="tel:7888741037" className="font-bold underline underline-offset-4 decoration-2">78887-41037</a>
       </div>
     </div>
   );
@@ -108,7 +108,7 @@ export function PageHero({
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
               </Link>
               <a
-                href="tel:7087556657"
+                href="tel:7888741037"
                 className="inline-flex items-center gap-2 rounded-full bg-white text-ink-900 px-6 py-3.5 text-sm font-semibold border border-blush-100 hover:border-blush-300 transition"
               >
                 <Phone className="h-4 w-4" /> Call 24/7

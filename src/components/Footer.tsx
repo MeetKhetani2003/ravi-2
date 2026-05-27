@@ -3,12 +3,12 @@ import Link from 'next/link';
 import { Phone, Mail, MapPin, Heart, ArrowUpRight, Camera, Users, Send, Play } from 'lucide-react';
 
 const quick = [
-  { label: 'Maternity Care', to: '/services' },
-  { label: 'Neonatology', to: '/services' },
-  { label: 'Pediatrics', to: '/services' },
-  { label: 'Fertility', to: '/services' },
-  { label: 'Gynecology', to: '/services' },
-  { label: 'Vaccination', to: '/services' },
+  { label: 'Maternity Care', to: '/speciality/obstetrics-maternity' },
+  { label: 'Neonatology', to: '/speciality/neonatology' },
+  { label: 'Pediatrics', to: '/speciality/pediatrics' },
+  { label: 'Fertility', to: '/speciality/fertility' },
+  { label: 'Gynecology', to: '/speciality/gynaecology' },
+  { label: 'All Specialities', to: '/specialities' },
 ];
 
 const hospital = [
@@ -28,34 +28,7 @@ export default function Footer() {
       <div className="absolute -top-10 right-0 h-80 w-80 rounded-full bg-sky-200/50 blur-3xl animate-blob" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        {/* Newsletter CTA strip */}
-        <div className="relative rounded-[40px] overflow-hidden bg-gradient-to-br from-ink-900 via-ink-800 to-ink-900 p-10 lg:p-14 text-white mb-20">
-          <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_20%_20%,rgba(255,125,163,0.4),transparent_50%),radial-gradient(circle_at_80%_80%,rgba(138,197,255,0.4),transparent_50%)]" />
-          <div className="relative grid lg:grid-cols-2 gap-10 items-center">
-            <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3 py-1 text-xs font-medium backdrop-blur">
-                <span className="h-1.5 w-1.5 rounded-full bg-blush-400 animate-pulse" />
-                Parenting guidance, straight to you
-              </span>
-              <h3 className="mt-5 font-serif text-3xl lg:text-5xl leading-[1.05] tracking-tight text-balance">
-                A gentler start to motherhood & beyond.
-              </h3>
-              <p className="mt-4 text-white/70 max-w-lg">
-                Join 20,000+ parents receiving weekly, doctor-curated insights on pregnancy, newborn care, and child wellness.
-              </p>
-            </div>
-            <form onSubmit={(e) => e.preventDefault()} className="rounded-3xl bg-white/10 border border-white/15 backdrop-blur-xl p-3 flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="flex-1 bg-transparent px-4 py-3 text-sm placeholder:text-white/40 focus:outline-none"
-              />
-              <button className="rounded-2xl bg-white text-ink-900 px-6 py-3 text-sm font-semibold hover:bg-blush-100 transition flex items-center justify-center gap-2">
-                Subscribe <ArrowUpRight className="h-4 w-4" />
-              </button>
-            </form>
-          </div>
-        </div>
+
 
         {/* Footer grid */}
         <div className="grid lg:grid-cols-12 gap-12 pb-12 border-b border-ink-900/10">
@@ -74,10 +47,10 @@ export default function Footer() {
             <div className="mt-8 space-y-3 text-sm text-ink-700">
               <div className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 mt-0.5 text-blush-500 shrink-0" />
-                <span>Sco 14, Sec- 125, Naval Market<br />Sunny Enclave, Mohali</span>
+                <span>Dholan Majra Chowk, Old Plaza Building<br />Old Chandigarh-Morinda Road, Morinda</span>
               </div>
-              <a href="tel:7087556657" className="flex items-center gap-3 hover:text-blush-600 transition">
-                <Phone className="h-4 w-4 text-blush-500" /> 70875-56657  ·  Alt: 94633-66657
+              <a href="tel:7888741037" className="flex items-center gap-3 hover:text-blush-600 transition">
+                <Phone className="h-4 w-4 text-blush-500" /> 78887-41037  ·  Alt: 94633-66657
               </a>
               <a href="mailto:info@ravihospital.com" className="flex items-center gap-3 hover:text-blush-600 transition">
                 <Mail className="h-4 w-4 text-blush-500" /> info@ravihospital.com

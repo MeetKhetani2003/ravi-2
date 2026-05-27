@@ -5,8 +5,8 @@ import {
 export const HOSPITAL_INFO = {
   name: "RAVI MOTHER & CHILD HOSPITAL",
   shortName: "FH",
-  phones: ["7087556657", "9463366657"],
-  address: "Sco 14, Sec- 125, Naval Market, Sunny Enclave, Mohali",
+  phones: ["7888741037", "9463366657"],
+  address: "Dholan Majra Chowk, Old Plaza Building, Old Chandigarh-Morinda Road, Morinda. M : 7888741037 Not For Medicolegal Purpose",
   mission: "FH aims to provide best of care close to home.",
   vision: "To be the most trusted brand in providing maternal, newborn and pediatric care services",
   coreValues: [
@@ -67,7 +67,7 @@ export const SPECIALITIES = [
       "Menstrual Irregularities management",
       "Gynaecology Surgeries (Laparoscopy, Hysterectomy, Myomectomy)"
     ],
-    image: "/hero_mother_child_1778827102322.png"
+    image: "/gynecology_real.jpg"
   },
   {
     id: "fertility",
@@ -78,7 +78,7 @@ export const SPECIALITIES = [
     desc: "Latest science combined with personal guidance and care for couples facing conception difficulties.",
     fullDesc: "Many couples find it difficult to conceive the natural way, due to barriers related to lifestyle, age and other physical disorders. At FH, couples can avail of the latest what science has to offer combined with personal guidance and care.",
     services: ["Infertility Evaluation", "Personalized Conception Guidance", "Advanced Fertility Treatments"],
-    image: "/hero_nicu_care_1778827138889.png",
+    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80",
     faqs: [
       { q: "When should a couple seek infertility evaluation?", a: "If you have been trying to conceive for over a year (or 6 months if over age 35) without success, it's recommended to consult our fertility specialists." },
       { q: "What tests are involved in the initial fertility assessment?", a: "Assessments typically include hormonal profiling, ultrasound scans, and semen analysis to identify potential barriers to conception." }
@@ -296,7 +296,7 @@ export const FAQS = [
   { q: "What are the hospital timings?", a: "We provide round-the-clock emergency services for maternity and pediatrics. Our OPD timings are generally 10:00 AM to 2:00 PM and 5:00 PM to 8:00 PM." },
   { q: "Do you have NICU facilities?", a: "Yes, we have a state-of-the-art Level III NICU (Neonatal Intensive Care Unit) to handle all kinds of neonatal emergencies." },
   { q: "Is cashless facility available?", a: "We are empanelled with major TPA and insurance providers. Please check with our front desk for specific company tie-ups." },
-  { q: "How can I book an appointment?", a: "You can book an appointment through our website's 'Book Appointment' button or by calling our helpdesk at 7087556657." }
+  { q: "How can I book an appointment?", a: "You can book an appointment through our website's 'Book Appointment' button or by calling our helpdesk at 7888741037." }
 ];
 
 export const CERTIFICATIONS = [
@@ -311,7 +311,7 @@ export const GALLERY = {
     { id: 2, url: "https://images.unsplash.com/photo-1531983412531-1f49a365ffed?auto=format&fit=crop&w=1200&q=80", title: "Luxury Delivery Suite", category: "Maternity" },
     { id: 3, url: "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=1200&q=80", title: "Pediatric Consultation", category: "Pediatrics" },
     { id: 4, url: "https://images.unsplash.com/photo-1502740479091-635887520276?auto=format&fit=crop&w=1200&q=80", title: "Newborn Wellness Check", category: "Neonatology" },
-    { id: 5, url: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=1200&q=80", title: "Fertility & IVF Lab", category: "Fertility" },
+    { id: 5, url: "https://images.pexels.com/photos/3279196/pexels-photo-3279196.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&q=80", title: "Fertility & IVF Lab", category: "Fertility" },
     { id: 6, url: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80", title: "24/7 Emergency Care", category: "Facility" },
     { id: 7, url: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80", title: "Compassionate Nursing", category: "Maternity" },
     { id: 8, url: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=1200&q=80", title: "Advanced Fetal Monitoring", category: "Maternity" },

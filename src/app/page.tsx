@@ -65,7 +65,7 @@ const FAQS = [
   { q: "What are the hospital timings?", a: "We provide round-the-clock emergency services for maternity and pediatrics. Our OPD timings are generally 10:00 AM to 2:00 PM and 5:00 PM to 8:00 PM." },
   { q: "Do you have NICU facilities?", a: "Yes, we have a state-of-the-art Level III NICU (Neonatal Intensive Care Unit) to handle all kinds of neonatal emergencies." },
   { q: "Is cashless facility available?", a: "We are empanelled with major TPA and insurance providers. Please check with our front desk for specific company tie-ups." },
-  { q: "How can I book an appointment?", a: "You can book an appointment through our website's 'Book Appointment' button or by calling our helpdesk at 7087556657." }
+  { q: "How can I book an appointment?", a: "You can book an appointment through our website's 'Book Appointment' button or by calling our helpdesk at 7888741037." }
 ];
 
 const CERTIFICATIONS = [
@@ -107,14 +107,14 @@ const SPECIALITIES = [
     title: "Gynaecology",
     icon: <Activity className="w-6 h-6" />,
     shortDesc: "Expert diagnosis and treatment for conditions related to the reproductive system of women.",
-    image: "/hero_mother_child_1778827102322.png"
+    image: "/gynecology_real.jpg"
   },
   {
     id: "fertility",
     title: "Fertility",
     icon: <Microscope className="w-6 h-6" />,
     shortDesc: "Latest science combined with personal guidance and care for couples facing conception difficulties.",
-    image: "/hero_nicu_care_1778827138889.png",
+    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "pediatrics",
@@ -216,8 +216,8 @@ export default function Home() {
               </span>
               <span className="text-ink-500">24/7 Emergency</span>
               <span className="h-4 w-px bg-ink-200" />
-              <a href="tel:7087556657" className="text-ink-900 font-semibold flex items-center gap-1">
-                <Phone className="h-3.5 w-3.5" /> 70875-56657
+              <a href="tel:7888741037" className="text-ink-900 font-semibold flex items-center gap-1">
+                <Phone className="h-3.5 w-3.5" /> 78887-41037
               </a>
             </div>
           </motion.div>
@@ -256,7 +256,7 @@ export default function Home() {
                 transition={{ duration: 0.7, delay: 0.35 }}
                 className="mt-8 text-lg lg:text-xl text-ink-500 max-w-xl leading-relaxed"
               >
-                Experience the perfect blend of medical expertise and compassionate care at Fatesh Hospital, Mohali.
+                Experience the perfect blend of medical expertise and compassionate care at Fatesh Hospital, Morinda.
               </motion.p>
 
               <motion.div
@@ -939,7 +939,7 @@ export default function Home() {
                 <div className="text-sm text-ink-500 mt-2">Choose your doctor, date, and time in 60 seconds.</div>
                 <ArrowUpRight className="mt-4 h-5 w-5 text-blush-600" />
               </Link>
-              <a href="tel:7087556657" className="rounded-3xl bg-ink-900 text-white p-6 hover:-translate-y-1 transition">
+              <a href="tel:7888741037" className="rounded-3xl bg-ink-900 text-white p-6 hover:-translate-y-1 transition">
                 <Phone className="h-7 w-7 text-blush-400 mb-4" />
                 <div className="font-serif text-xl font-semibold">Call the desk</div>
                 <div className="text-sm text-white/60 mt-2">A real human answers. 24/7 for emergencies.</div>
