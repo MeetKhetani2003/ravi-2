@@ -114,7 +114,7 @@ const SPECIALITIES = [
     title: "Fertility",
     icon: <Microscope className="w-6 h-6" />,
     shortDesc: "Latest science combined with personal guidance and care for couples facing conception difficulties.",
-    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80",
+    image: "/fertility.jpg",
   },
   {
     id: "pediatrics",
@@ -342,7 +342,7 @@ export default function Home() {
                   ))}
                   <div className="absolute inset-0 bg-gradient-to-t from-ink-900/40 via-transparent to-transparent z-20 pointer-events-none" />
                   <div className="absolute inset-0 bg-gradient-to-br from-blush-500/10 to-transparent z-20 pointer-events-none" />
-                  
+
                   {/* Indicators */}
                   <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
                     {HERO_IMAGES.map((_, idx) => (
@@ -579,7 +579,7 @@ export default function Home() {
                 <div className="p-5 flex items-center justify-between">
                   <div className="flex items-center gap-3 text-sm">
                     <div className="flex items-center gap-1">
-                      {[1,2,3,4,5].map((n) => <Star key={n} className="h-4 w-4 fill-amber-400 text-amber-400" />)}
+                      {[1, 2, 3, 4, 5].map((n) => <Star key={n} className="h-4 w-4 fill-amber-400 text-amber-400" />)}
                     </div>
                     <span className="text-ink-500">5.0 · 400+ reviews</span>
                   </div>
@@ -613,24 +613,24 @@ export default function Home() {
               </button>
             </div>
           </div>
-          
+
           <div className="relative">
             <div ref={partnersScrollRef} className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-12 scroll-smooth">
               {PARTNERS.map((p, i) => (
                 <div key={i} className="min-w-[280px] sm:min-w-[320px] snap-start">
                   <div className="bg-white p-8 rounded-[2rem] border border-blush-100 shadow-sm hover:shadow-xl hover:border-blush-300 hover:-translate-y-2 transition-all duration-500 flex flex-col h-full">
                     <div className="aspect-video bg-blush-50 rounded-2xl border border-white flex items-center justify-center mb-8 group">
-                       <div className={`text-4xl font-black ${p.color} tracking-tighter opacity-80 group-hover:scale-110 transition-transform duration-500`}>{p.logo}</div>
+                      <div className={`text-4xl font-black ${p.color} tracking-tighter opacity-80 group-hover:scale-110 transition-transform duration-500`}>{p.logo}</div>
                     </div>
                     <h4 className="text-lg font-bold text-ink-900 mb-4">{p.name}</h4>
                     <div className="mt-auto pt-6 border-t border-blush-50">
-                       <div className="flex items-center gap-2 text-[10px] font-bold text-blush-500 uppercase tracking-widest mb-3">
-                          <CheckCircle2 size={12} /> Verified Network
-                       </div>
-                       <div className="flex items-center gap-1 text-amber-400">
-                          {[1,2,3,4,5].map(s => <Star key={s} size={14} className="fill-current" />)}
-                          <span className="text-ink-400 text-xs font-bold ml-2">5.0</span>
-                       </div>
+                      <div className="flex items-center gap-2 text-[10px] font-bold text-blush-500 uppercase tracking-widest mb-3">
+                        <CheckCircle2 size={12} /> Verified Network
+                      </div>
+                      <div className="flex items-center gap-1 text-amber-400">
+                        {[1, 2, 3, 4, 5].map(s => <Star key={s} size={14} className="fill-current" />)}
+                        <span className="text-ink-400 text-xs font-bold ml-2">5.0</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -644,7 +644,7 @@ export default function Home() {
       <section className="py-16 sm:py-24 bg-blush-50/50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <SectionHeader eyebrow="Verified Testimonials" title={<>What Our Patients Say</>} center />
-          
+
           <div className="relative mt-10 sm:mt-16">
             <div ref={testimonialsScrollRef} className="flex gap-4 sm:gap-8 overflow-x-auto no-scrollbar snap-x snap-mandatory px-4 lg:px-0 lg:flex-row flex-nowrap">
               {RAW_TESTIMONIALS.map((test, idx) => (
@@ -658,13 +658,13 @@ export default function Home() {
                         <div>
                           <h4 className="font-serif font-bold text-ink-900 text-base sm:text-2xl">{test.name}</h4>
                           <div className="flex gap-0.5 text-amber-400 mt-1">
-                            {[1,2,3,4,5].map(i => <Star key={i} size={12} className="fill-current sm:w-4 sm:h-4" />)}
+                            {[1, 2, 3, 4, 5].map(i => <Star key={i} size={12} className="fill-current sm:w-4 sm:h-4" />)}
                           </div>
                         </div>
                       </div>
                       <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" className="w-5 h-5 sm:w-8 sm:h-8 opacity-50" />
                     </div>
-                    
+
                     <div className="flex-grow">
                       <p className="text-sm sm:text-lg text-ink-600 leading-relaxed italic mb-6">
                         "{test.text}"
@@ -676,7 +676,7 @@ export default function Home() {
                         <ShieldCheck size={12} /> Verified Patient
                       </div>
                     </div>
-                    
+
                     <div className="absolute bottom-0 left-8 right-8 h-1 bg-gradient-to-r from-blush-400 to-blush-600 rounded-t-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                   </div>
                 </div>
@@ -812,7 +812,7 @@ export default function Home() {
                 <h4 className="font-serif text-2xl font-bold text-ink-900">{branch.name}</h4>
                 <p className="text-ink-500 font-medium text-sm mt-1">{branch.location}</p>
                 <p className="text-ink-600 mt-4 leading-relaxed max-w-xs mx-auto flex-grow">{branch.description}</p>
-                
+
                 <div className="mt-8 pt-6 border-t border-blush-100 w-full">
                   <div className="flex flex-col items-center gap-2">
                     {branch.whatsapp && (
@@ -846,18 +846,17 @@ export default function Home() {
         <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-6">
           <SectionHeader eyebrow="Our Presence" title={<>Serving Our Local Communities</>} />
           <div className="flex items-center gap-4 bg-blush-50 px-6 py-3 rounded-full border border-blush-100">
-             <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-             <span className="text-sm font-bold text-ink-900">10+ Active Service Areas</span>
+            <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-sm font-bold text-ink-900">10+ Active Service Areas</span>
           </div>
         </div>
         <div className="flex flex-wrap gap-4 justify-center">
           {SERVICE_LOCATIONS.map((loc, idx) => (
             <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.05 }}>
-              <div className={`px-6 py-3 rounded-full border transition-all duration-300 flex items-center gap-3 cursor-default ${
-                loc.status === 'Active' 
-                ? 'bg-white border-blush-100 text-ink-900 hover:border-blush-300 hover:shadow-lg' 
+              <div className={`px-6 py-3 rounded-full border transition-all duration-300 flex items-center gap-3 cursor-default ${loc.status === 'Active'
+                ? 'bg-white border-blush-100 text-ink-900 hover:border-blush-300 hover:shadow-lg'
                 : 'bg-cream-50 border-ink-100 text-ink-400 opacity-60'
-              }`}>
+                }`}>
                 <MapPin size={16} className={loc.status === 'Active' ? 'text-blush-500' : 'text-ink-300'} />
                 <span className="font-semibold text-sm">{loc.name}</span>
                 {loc.status === 'Expanding Soon' && (
@@ -884,9 +883,9 @@ export default function Home() {
                 <div className="relative group overflow-hidden rounded-[2rem] shadow-lg h-[300px]">
                   <img src={img} alt="Hospital" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-ink-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 grid place-items-center">
-                     <div className="w-14 h-14 rounded-full bg-white/30 backdrop-blur border border-white/40 flex items-center justify-center text-white scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500">
-                        <ImageIcon size={24} />
-                     </div>
+                    <div className="w-14 h-14 rounded-full bg-white/30 backdrop-blur border border-white/40 flex items-center justify-center text-white scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500">
+                      <ImageIcon size={24} />
+                    </div>
                   </div>
                 </div>
               </motion.div>
