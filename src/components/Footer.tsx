@@ -34,10 +34,10 @@ export default function Footer() {
         <div className="grid lg:grid-cols-12 gap-12 pb-12 border-b border-ink-900/10">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3">
-              <img 
-                src="/logo.png" 
-                alt="Fateh Hospital Logo" 
-                className="h-14 w-auto object-contain" 
+              <img
+                src="/logo.png"
+                alt="Fateh Hospital Logo"
+                className="h-14 w-auto object-contain"
               />
             </div>
             <p className="mt-6 text-ink-500 max-w-md leading-relaxed">
@@ -50,7 +50,7 @@ export default function Footer() {
                 <span>Dholan Majra Chowk, Old Plaza Building<br />Old Chandigarh-Morinda Road, Morinda</span>
               </div>
               <a href="tel:7888741037" className="flex items-center gap-3 hover:text-blush-600 transition">
-                <Phone className="h-4 w-4 text-blush-500" /> 78887-41037  ·  Alt: 94633-66657
+                <Phone className="h-4 w-4 text-blush-500" /> 78887-41037
               </a>
               <a href="mailto:info@ravihospital.com" className="flex items-center gap-3 hover:text-blush-600 transition">
                 <Mail className="h-4 w-4 text-blush-500" /> info@ravihospital.com
@@ -99,7 +99,7 @@ export default function Footer() {
         </div>
 
         <div className="py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-ink-400">
-          <div>© {new Date().getFullYear()} Fatesh Hospital. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} Fateh Hospital. All rights reserved.</div>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-ink-900 transition">Privacy</a>
             <a href="#" className="hover:text-ink-900 transition">Terms</a>

@@ -239,7 +239,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="mt-6 font-serif text-5xl md:text-6xl lg:text-[88px] font-semibold leading-[0.98] tracking-tight text-ink-900"
+                className="mt-6 font-serif text-5xl md:text-6xl lg:text-[70px] font-semibold leading-[0.98] tracking-tight text-ink-900"
               >
                 Compassionate Care for <br />
                 <span className="relative inline-block italic text-blush-600">
@@ -256,7 +256,7 @@ export default function Home() {
                 transition={{ duration: 0.7, delay: 0.35 }}
                 className="mt-8 text-lg lg:text-xl text-ink-500 max-w-xl leading-relaxed"
               >
-                Experience the perfect blend of medical expertise and compassionate care at Fatesh Hospital, Morinda.
+                Experience the perfect blend of medical expertise and compassionate care at Fateh Hospital, Morinda.
               </motion.p>
 
               <motion.div

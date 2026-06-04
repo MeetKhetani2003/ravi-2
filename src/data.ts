@@ -235,7 +235,7 @@ export const parentArticles = [
 export const HOSPITAL_INFO = {
   name: "RAVI MOTHER & CHILD HOSPITAL",
   shortName: "FH",
-  phones: ["7888741037", "9463366657"],
+  phones: ["8847432008", "9463366657"],
   address: "Dholan Majra Chowk, Old Plaza Building, Old Chandigarh-Morinda Road, Morinda. M : 7888741037 Not For Medicolegal Purpose",
   mission: "FH aims to provide best of care close to home.",
   vision: "To be the most trusted brand in providing maternal, newborn and pediatric care services",
@@ -250,7 +250,7 @@ export const HOSPITAL_INFO = {
       name: "Fateh Children Hospital",
       location: "Ropar",
       description: "Exclusive children's hospital.",
-      whatsapp: "7888741037",
+      whatsapp: "8847432008",
       type: "Pediatrics",
       logo: "/branch_fch.png"
     },
@@ -263,6 +263,6 @@ export const HOSPITAL_INFO = {
       logo: "/branch_mediclinic.png"
     }
   ],
-  aboutText: "Fatesh Hospital (FH) provides excellent care to obstetric, gynaecological and pediatric patients. Our expertise is the result of hard working, experienced & sincere consultants providing round the clock services. At FH, we strive to give a personalized service, warm welcome and expert care to all our patrons. We are there for you to provide solutions at every stage of your life."
+  aboutText: "Fateh Hospital (FH) provides excellent care to obstetric, gynaecological and pediatric patients. Our expertise is the result of hard working, experienced & sincere consultants providing round the clock services. At FH, we strive to give a personalized service, warm welcome and expert care to all our patrons. We are there for you to provide solutions at every stage of your life."
 };
 

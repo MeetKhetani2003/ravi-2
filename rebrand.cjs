@@ -13,7 +13,7 @@ walkDir('/home/meet/Downloads/ravi2/src', function(filePath) {
   if (filePath.endsWith('.ts') || filePath.endsWith('.tsx') || filePath.endsWith('.js')) {
     let content = fs.readFileSync(filePath, 'utf8');
     let original = content;
-    content = content.replace(/Ravi Mother & Child Hospital/g, "Fatesh Hospital");
+    content = content.replace(/Ravi Mother & Child Hospital/g, "Fateh Hospital");
     content = content.replace(/RMCH/g, "FH");
     if (content !== original) {
       fs.writeFileSync(filePath, content);

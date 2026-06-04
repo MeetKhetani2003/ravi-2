@@ -221,7 +221,7 @@ export default function Contact() {
               loading="lazy"
             />
             <div className="absolute bottom-6 left-6 glass rounded-2xl p-5 max-w-xs">
-              <div className="font-serif text-lg font-semibold text-ink-900">Fatesh Hospital</div>
+              <div className="font-serif text-lg font-semibold text-ink-900">Fateh Hospital</div>
               <div className="text-sm text-ink-500 mt-1">Dholan Majra Chowk, Old Plaza Building, Morinda</div>
               <a href="https://www.google.com/maps/search/Fateh%20Hospital/@30.792320251464844,76.49512481689453,17z?hl=en" target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-blush-600">
                 Open in Maps →

@@ -31,7 +31,7 @@ export const HOSPITAL_INFO = {
       type: "Mediclinic"
     }
   ],
-  aboutText: "Fatesh Hospital (FH) provides excellent care to obstetric, gynaecological and pediatric patients. Our expertise is the result of hard working, experienced & sincere consultants providing round the clock services. At FH, we strive to give a personalized service, warm welcome and expert care to all our patrons. We are there for you to provide solutions at every stage of your life."
+  aboutText: "Fateh Hospital (FH) provides excellent care to obstetric, gynaecological and pediatric patients. Our expertise is the result of hard working, experienced & sincere consultants providing round the clock services. At FH, we strive to give a personalized service, warm welcome and expert care to all our patrons. We are there for you to provide solutions at every stage of your life."
 };
 
 export const SPECIALITIES = [
@@ -42,7 +42,7 @@ export const SPECIALITIES = [
     icon: <Baby className="w-8 h-8" />,
     shortDesc: "Catering to your pregnancy right from preconceptional counselling to child birth and post-partum care.",
     desc: "Catering to your pregnancy right from preconceptional counselling to child birth and post-partum care.",
-    fullDesc: "Fatesh Hospital caters you to your pregnancy right from preconceptional counselling to pregnancy check-ups, child birth and post partum care. Our team has vast experience of handling high risk pregnancy cases and make every effort to ensure the well being of mother and child throughout those nine months. Hospital understands that the best moment in a couple's life is welcoming a baby and our aim is to supervise and educate you throughout your pregnancy.",
+    fullDesc: "Fateh Hospital caters you to your pregnancy right from preconceptional counselling to pregnancy check-ups, child birth and post partum care. Our team has vast experience of handling high risk pregnancy cases and make every effort to ensure the well being of mother and child throughout those nine months. Hospital understands that the best moment in a couple's life is welcoming a baby and our aim is to supervise and educate you throughout your pregnancy.",
     services: ["Pre-pregnancy counselling", "Guidance", "ANC check-ups", "High-Risk Pregnancy care", "Prenatal screening and diagnosis", "Postnatal Counselling", "Follow-up"],
     image: "/hero_maternity_care_1778827153857.png",
     faqs: [

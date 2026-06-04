@@ -19,19 +19,18 @@ export default function About() {
                 Our story
               </div>
               <h1 className="mt-6 font-serif text-5xl md:text-6xl font-semibold tracking-tight text-ink-900 leading-[1.1] text-balance">
-                About <span className="italic text-blush-600">Fatesh Hospital</span>
+                About <span className="italic text-blush-600">Fateh Hospital</span>
               </h1>
               <p className="mt-7 text-lg text-ink-500 leading-relaxed max-w-xl">
                 {HOSPITAL_INFO.aboutText}
               </p>
               <div className="mt-8 flex flex-wrap gap-6 text-sm text-ink-700">
-                <div className="flex items-center gap-2"><Award className="h-4 w-4 text-blush-500" /> NABH Accredited</div>
                 <div className="flex items-center gap-2"><Heart className="h-4 w-4 text-blush-500" /> Patient Centric Care</div>
               </div>
             </div>
 
             <div className="lg:col-span-6 relative">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
@@ -97,9 +96,9 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div>
-              <SectionHeader 
-                eyebrow="Why Choose Us" 
-                title={<>A Legacy of Care and <span className="italic text-blush-600">Trust</span></>} 
+              <SectionHeader
+                eyebrow="Why Choose Us"
+                title={<>A Legacy of Care and <span className="italic text-blush-600">Trust</span></>}
               />
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -131,8 +130,8 @@ export default function About() {
                 </div>
               </motion.div>
             </div>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -140,7 +139,7 @@ export default function About() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-sky-200 to-blush-200 rounded-[3rem] transform rotate-3 scale-105 -z-10 blur-sm opacity-50"></div>
               <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=800&q=80" alt="Care" className="relative rounded-[2rem] sm:rounded-[3rem] shadow-2xl object-cover h-[500px] sm:h-[600px] w-full border border-white/50" />
-              
+
               <div className="absolute -bottom-6 -right-6 sm:-bottom-10 sm:-right-6 glass backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/60 max-w-sm">
                 <div className="flex items-center gap-3 sm:gap-4 mb-4">
                   <div className="p-2.5 bg-blush-100 rounded-xl text-blush-600">
@@ -151,7 +150,7 @@ export default function About() {
                 <ul className="space-y-3 text-ink-600 font-medium text-sm">
                   {HOSPITAL_INFO.coreValues.map((value, i) => (
                     <li key={i} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" /> 
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
                       {value}
                     </li>
                   ))}
@@ -207,7 +206,7 @@ export default function About() {
                 <h4 className="font-serif text-2xl font-bold text-ink-900">{branch.name}</h4>
                 <p className="text-ink-500 font-medium text-sm mt-1">{branch.location}</p>
                 <p className="text-ink-600 mt-4 leading-relaxed max-w-xs mx-auto flex-grow">{branch.description}</p>
-                
+
                 <div className="mt-8 pt-6 border-t border-blush-100 w-full">
                   <div className="flex flex-col items-center gap-2">
                     {branch.whatsapp && (
