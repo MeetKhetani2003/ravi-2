@@ -1,28 +1,50 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ZoomIn, Play } from 'lucide-react';
+import { X, ZoomIn, Play, Loader2 } from 'lucide-react';
 import { Section } from '@/components/ui';
 import { GALLERY } from '@/legacyData';
 
 const categories = ['All', 'Photos', 'Videos'];
 
-type GalleryItem = 
-  | { type: 'photo'; id: number; url: string; title: string; category: string }
-  | { type: 'video'; id: number; youtubeId: string; title: string; category: string };
+type GalleryItem =
+  | { _id: string; type: 'photo'; fileId?: string; url?: string; title: string; category: string }
+  | { _id: string; type: 'video'; youtubeId: string; title: string; category: string };
 
-const allItems: GalleryItem[] = [
-  ...GALLERY.photos.map(p => ({ ...p, type: 'photo' as const })),
-  ...GALLERY.videos.map(v => ({ ...v, type: 'video' as const }))
+const staticItems: GalleryItem[] = [
+  ...GALLERY.photos.map((p, idx) => ({ _id: `static-photo-${idx}`, type: 'photo' as const, url: p.url, title: p.title, category: p.category })),
+  ...GALLERY.videos.map((v, idx) => ({ _id: `static-video-${idx}`, type: 'video' as const, youtubeId: v.youtubeId, title: v.title, category: v.category }))
 ];
 
 export default function Gallery() {
   const [filter, setFilter] = useState('All');
   const [lightbox, setLightbox] = useState<GalleryItem | null>(null);
+  const [items, setItems] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadItems() {
+      try {
+        const res = await fetch('/api/gallery');
+        const data = await res.json();
+        if (res.ok && data.items) {
+          setItems(data.items);
+        } else {
+          setItems(staticItems);
+        }
+      } catch (err) {
+        console.warn('Failed to fetch from DB, falling back to static gallery:', err);
+        setItems(staticItems);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadItems();
+  }, []);
 
   const filtered = filter === 'All' 
-    ? allItems 
-    : allItems.filter(item => item.type === (filter === 'Photos' ? 'photo' : 'video'));
+    ? items 
+    : items.filter(item => item.type === (filter === 'Photos' ? 'photo' : 'video'));
 
   return (
     <div className="relative">
@@ -65,51 +87,74 @@ export default function Gallery() {
 
       {/* Masonry gallery */}
       <Section>
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
-          <AnimatePresence>
-            {filtered.map((item, i) => {
-              const isPhoto = item.type === 'photo';
-              const imgUrl = isPhoto ? item.url : `https://img.youtube.com/vi/${item.youtubeId}/maxresdefault.jpg`;
-              
-              return (
-                <motion.button
-                  key={`${item.type}-${item.id}`}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => setLightbox(item)}
-                  className={`group relative block w-full break-inside-avoid rounded-[28px] overflow-hidden cursor-pointer ${
-                    i % 3 === 0 ? 'aspect-[3/4]' : 'aspect-square'
-                  }`}
-                >
-                  <img src={imgUrl} alt={item.title} className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink-900/70 via-ink-900/0 to-transparent opacity-0 group-hover:opacity-100 transition" />
-                  
-                  {!isPhoto && (
-                    <div className="absolute inset-0 grid place-items-center">
-                      <div className="h-16 w-16 rounded-full bg-white/30 backdrop-blur grid place-items-center text-white group-hover:scale-110 group-hover:bg-blush-500 transition-all duration-300">
-                        <Play className="h-6 w-6 ml-1" fill="currentColor" />
+        {loading ? (
+          <div className="grid place-items-center py-20">
+            <Loader2 className="h-8 w-8 text-blush-500 animate-spin" />
+            <p className="text-xs font-semibold text-ink-500 mt-3">Loading gallery...</p>
+          </div>
+        ) : filtered.length === 0 ? (
+          <div className="bg-white border border-blush-100 rounded-3xl p-12 text-center shadow-sm max-w-md mx-auto">
+            <h3 className="font-serif text-lg font-semibold text-ink-900">No media found</h3>
+            <p className="text-sm text-ink-500 mt-2">There are no items matching this filter.</p>
+          </div>
+        ) : (
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
+            <AnimatePresence>
+              {filtered.map((item, i) => {
+                const isPhoto = item.type === 'photo';
+                const imgUrl = isPhoto 
+                  ? (item.fileId ? `/api/gallery/image/${item.fileId}` : item.url || '')
+                  : `https://img.youtube.com/vi/${item.youtubeId}/maxresdefault.jpg`;
+                
+                return (
+                  <motion.button
+                    key={`${item.type}-${item._id}`}
+                    layout
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ delay: i * 0.05 }}
+                    onClick={() => setLightbox(item)}
+                    className={`group relative block w-full break-inside-avoid rounded-[28px] overflow-hidden cursor-pointer ${
+                      i % 3 === 0 ? 'aspect-[3/4]' : 'aspect-square'
+                    }`}
+                  >
+                    <img 
+                      src={imgUrl} 
+                      alt={item.title} 
+                      className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      onError={(e) => {
+                        if (!isPhoto && e.currentTarget.src.includes('maxresdefault')) {
+                          e.currentTarget.src = `https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`;
+                        }
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink-900/70 via-ink-900/0 to-transparent opacity-0 group-hover:opacity-100 transition" />
+                    
+                    {!isPhoto && (
+                      <div className="absolute inset-0 grid place-items-center">
+                        <div className="h-16 w-16 rounded-full bg-white/30 backdrop-blur grid place-items-center text-white group-hover:scale-110 group-hover:bg-blush-500 transition-all duration-300">
+                          <Play className="h-6 w-6 ml-1" fill="currentColor" />
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  <div className="absolute bottom-0 left-0 right-0 p-5 text-white opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all">
-                    <div className="text-xs uppercase tracking-[0.18em] opacity-80">{item.category}</div>
-                    <div className="font-serif text-xl font-semibold mt-1">{item.title}</div>
-                  </div>
-                  
-                  {isPhoto && (
-                    <div className="absolute top-5 right-5 h-10 w-10 rounded-full bg-white/80 backdrop-blur grid place-items-center opacity-0 group-hover:opacity-100 transition">
-                      <ZoomIn className="h-4 w-4 text-ink-900" />
+                    <div className="absolute bottom-0 left-0 right-0 p-5 text-white opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all">
+                      <div className="text-xs uppercase tracking-[0.18em] opacity-80">{item.category}</div>
+                      <div className="font-serif text-xl font-semibold mt-1">{item.title}</div>
                     </div>
-                  )}
-                </motion.button>
-              );
-            })}
-          </AnimatePresence>
-        </div>
+                    
+                    {isPhoto && (
+                      <div className="absolute top-5 right-5 h-10 w-10 rounded-full bg-white/80 backdrop-blur grid place-items-center opacity-0 group-hover:opacity-100 transition">
+                        <ZoomIn className="h-4 w-4 text-ink-900" />
+                      </div>
+                    )}
+                  </motion.button>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+        )}
       </Section>
 
       {/* Lightbox */}
@@ -128,18 +173,18 @@ export default function Gallery() {
             
             {lightbox.type === 'photo' ? (
               <motion.img
-                key={`photo-${lightbox.id}`}
+                key={`photo-${lightbox._id}`}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                src={lightbox.url}
+                src={lightbox.fileId ? `/api/gallery/image/${lightbox.fileId}` : lightbox.url || ''}
                 alt={lightbox.title}
                 className="max-h-[85vh] max-w-[90vw] rounded-3xl object-contain shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               />
             ) : (
               <motion.div
-                key={`video-${lightbox.id}`}
+                key={`video-${lightbox._id}`}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
@@ -168,3 +213,4 @@ export default function Gallery() {
     </div>
   );
 }
+
