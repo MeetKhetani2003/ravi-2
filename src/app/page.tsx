@@ -232,7 +232,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 rounded-full bg-white/70 backdrop-blur-xl border border-blush-100 px-4 py-2 text-sm font-medium text-ink-700 shadow-sm"
               >
                 <Sparkles className="h-4 w-4 text-blush-500" />
-                Trusted by 10,000+ families for over 15 years
+                Trusted by 2000+ families for over 3 years
               </motion.div>
 
               <motion.h1
