@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Upload, Trash2, Plus, Image as ImageIcon, Video, ArrowLeft, 
-  CheckCircle, AlertCircle, Loader2, Play, ExternalLink, RefreshCw
+  CheckCircle, AlertCircle, Loader2, Play, ExternalLink, RefreshCw, Calendar, Check
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -15,8 +15,9 @@ type GalleryItem =
 const CATEGORIES = ['Maternity', 'Neonatology', 'Pediatrics', 'Fertility', 'Gynecology', 'Facility'];
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'manage' | 'upload-photo' | 'add-video'>('manage');
+  const [activeTab, setActiveTab] = useState<'manage' | 'upload-photo' | 'add-video' | 'bookings'>('manage');
   const [items, setItems] = useState<GalleryItem[]>([]);
+  const [bookings, setBookings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [envError, setEnvError] = useState<string | null>(null);
 
@@ -71,8 +72,25 @@ export default function AdminDashboard() {
     }
   };
 
+  const fetchBookings = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch('/api/bookings');
+      const data = await res.json();
+      if (res.ok) {
+        setBookings(data.bookings || []);
+      }
+    } catch (err: any) {
+      console.error(err);
+      addToast('error', err.message || 'Error loading bookings');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchItems();
+    fetchBookings();
   }, []);
 
   // Handle Photo Drag & Drop
@@ -217,6 +235,33 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleStatusChange = async (id: string, status: string) => {
+    try {
+      const res = await fetch(`/api/bookings/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      if (!res.ok) throw new Error('Failed to update status');
+      addToast('success', 'Booking status updated!');
+      fetchBookings();
+    } catch (err: any) {
+      addToast('error', err.message);
+    }
+  };
+
+  const handleDeleteBooking = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this booking?')) return;
+    try {
+      const res = await fetch(`/api/bookings/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Failed to delete booking');
+      addToast('success', 'Booking deleted!');
+      fetchBookings();
+    } catch (err: any) {
+      addToast('error', err.message);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-cream-50/40 pb-20 pt-8 relative overflow-hidden">
       {/* Decorative blobs */}
@@ -237,7 +282,10 @@ export default function AdminDashboard() {
           </div>
           
           <button 
-            onClick={fetchItems}
+            onClick={() => {
+              fetchItems();
+              fetchBookings();
+            }}
             className="inline-flex items-center gap-2 rounded-full border border-blush-100 bg-white px-4 py-2 text-xs font-semibold text-ink-700 hover:bg-blush-50 shadow-sm transition"
           >
             <RefreshCw size={14} className={loading ? 'animate-spin' : ''} /> Refresh List
@@ -267,6 +315,7 @@ export default function AdminDashboard() {
                 { id: 'manage', label: 'Manage Gallery', icon: ImageIcon },
                 { id: 'upload-photo', label: 'Upload Photo', icon: Upload },
                 { id: 'add-video', label: 'Add Video', icon: Plus },
+                { id: 'bookings', label: 'Bookings', icon: Calendar },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -286,6 +335,101 @@ export default function AdminDashboard() {
             {/* Tab Content */}
             <div className="relative">
               <AnimatePresence mode="wait">
+                {activeTab === 'bookings' && (
+                  <motion.div
+                    key="bookings"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    {loading && bookings.length === 0 ? (
+                      <div className="grid place-items-center py-24">
+                        <Loader2 className="h-10 w-10 text-blush-500 animate-spin" />
+                        <span className="text-sm font-semibold text-ink-500 mt-4">Loading bookings...</span>
+                      </div>
+                    ) : bookings.length === 0 ? (
+                      <div className="bg-white border border-blush-100 rounded-3xl p-16 text-center shadow-sm">
+                        <div className="w-16 h-16 bg-blush-50 rounded-2xl flex items-center justify-center mx-auto text-blush-500 mb-4">
+                          <Calendar size={28} />
+                        </div>
+                        <h3 className="font-serif text-xl font-semibold text-ink-900">No bookings yet</h3>
+                        <p className="text-sm text-ink-500 mt-2">New appointments will appear here.</p>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {bookings.map((booking) => (
+                          <div key={booking._id} className="bg-white border border-blush-100 rounded-[28px] p-6 shadow-sm hover:shadow-lg transition flex flex-col">
+                            <div className="flex justify-between items-start mb-4">
+                              <div>
+                                <span className="inline-flex items-center gap-1.5 rounded-full bg-blush-50 px-3 py-1 text-xs font-semibold text-blush-700">
+                                  {booking.concern}
+                                </span>
+                              </div>
+                              <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full ${
+                                booking.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
+                                booking.status === 'Confirmed' ? 'bg-emerald-100 text-emerald-700' :
+                                booking.status === 'Completed' ? 'bg-blue-100 text-blue-700' :
+                                'bg-gray-100 text-gray-700'
+                              }`}>
+                                {booking.status}
+                              </span>
+                            </div>
+                            
+                            <h4 className="font-serif text-lg font-bold text-ink-900 mb-1">{booking.patient.name}</h4>
+                            <p className="text-sm text-ink-500 mb-4 flex gap-3">
+                              <span>{booking.patient.phone}</span>
+                              {booking.patient.age && <span>{booking.patient.age} yrs</span>}
+                            </p>
+
+                            <div className="rounded-2xl bg-cream-50 p-4 text-sm mb-4">
+                              <div className="flex justify-between mb-2">
+                                <span className="text-ink-500">Date</span>
+                                <span className="font-semibold text-ink-900">{new Date(booking.date).toLocaleDateString()}</span>
+                              </div>
+                              <div className="flex justify-between mb-2">
+                                <span className="text-ink-500">Time</span>
+                                <span className="font-semibold text-ink-900">{booking.time}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-ink-500">Doctor</span>
+                                <span className="font-semibold text-ink-900 text-right">{booking.doctorId}</span>
+                              </div>
+                            </div>
+                            
+                            {booking.patient.notes && (
+                              <div className="text-sm text-ink-600 mb-4 bg-gray-50 p-3 rounded-xl border border-gray-100 italic">
+                                "{booking.patient.notes}"
+                              </div>
+                            )}
+
+                            <div className="mt-auto flex items-center justify-between gap-2 border-t border-blush-100 pt-4">
+                              <select 
+                                value={booking.status}
+                                onChange={(e) => handleStatusChange(booking._id, e.target.value)}
+                                className="text-xs font-semibold bg-white border border-blush-200 rounded-xl px-3 py-2 text-ink-700 focus:outline-none"
+                              >
+                                <option value="Pending">Pending</option>
+                                <option value="Confirmed">Confirmed</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                              </select>
+
+                              <button
+                                onClick={() => handleDeleteBooking(booking._id)}
+                                className="p-2 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-xl transition shadow-sm"
+                                title="Delete Booking"
+                              >
+                                <Trash2 size={16} />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+
                 {activeTab === 'manage' && (
                   <motion.div
                     key="manage"

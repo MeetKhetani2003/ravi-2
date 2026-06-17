@@ -165,19 +165,22 @@ export const DOCTORS = [
     qualifications: "MBBS, MS OBS & GYNAE, EX-PCMS-1",
     experienceDesc: "An empathetic and dedicated Gynaecologist. She has played a vital role in the lives of thousands of women. Performed many normal vaginal & High-risk deliveries. Special interest in fertility treatments bringing smiles to childless couples. Expert in medical and surgical gynaecological treatments (hysterectomy, myomectomy, ovarian cystectomy).",
     experienceList: [
-      "8 Years Experience",
-      "Visiting consultant OBS & GYNAE in Ivy Multispecialty Hospital, Mohali",
+      "15 Years Experience",
+      "Visiting Consultant Cloudnine Hoapital, Chandigarh Motherhood Hospital, Mohali",
+      'Ex Consultant IVY/Livasa Hospital Indus Hospital',
       "Former Medical officer (Gynae) in DH, Fatehgarh Sahib, PCMS, Govt. of Punjab",
       "Former Senior Resident in Max Superspeciality Hospital, Mohali"
     ],
-    training: ["ADVANCED TRAINING COURSE in INFERTILITY (FOGSI)", "Live workshop on laparoscopic surgery"],
-    memberships: ["Life Member of FOGSI", "Life Member of ISAR"],
+    training: ["ADVANCED TRAINING COURSE in INFERTILITY (FOGSI)", "Live workshop on laparoscopic surgery", 'Training in Ultrasound ( Probe2Practice 2026)'],
+    memberships: ["Life Member of FOGSI", 'Minimal Access Surgery( MAS)',
+      'Indian Fertility Society( IFS )',
+      'Indian Society for Assisted Reproduction (ISAR)'],
     rating: 4.9,
-    location: "Mohali (FH & Sunny Enclave)",
-    experienceYears: "8+",
+    location: "Mohali (FH )",
+    experienceYears: "15+",
     publications: [
-      "Original research article on 'significance of LDH in perdition of PIH and its complication' (IJMRR; 2016)",
-      "Original research article on 'AST- IS IT useful as a biochemical marker' (JEBMH; 2016)",
+      "Original research article on 'significance of LDH in prediction of PIH and its complication' (IJMRR; 2016)",
+      "Original research article on 'AST useful as a biochemical marker' (JEBMH; 2016)",
       "Original research article on 'Significance of LDH and AST' (JEBMH; 2017)"
     ],
     image: "/doctors/dr-rupinder-kaur.jpeg"

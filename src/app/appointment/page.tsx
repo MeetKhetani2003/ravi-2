@@ -39,8 +39,34 @@ export default function Appointment() {
     return d;
   });
 
-  const handleSubmit = () => {
-    setConfirmed(true);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          concern,
+          doctorId,
+          date: dates[date].toISOString(),
+          time,
+          patient
+        })
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to book appointment');
+      }
+
+      setConfirmed(true);
+    } catch (error) {
+      console.error(error);
+      alert('There was an error booking your appointment. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const canNext =
@@ -280,10 +306,11 @@ export default function Appointment() {
                 ) : (
                   <button
                     onClick={handleSubmit}
-                    disabled={!canNext}
+                    disabled={!canNext || loading}
                     className="inline-flex items-center gap-2 rounded-full bg-blush-500 text-white px-7 py-3 text-sm font-semibold disabled:opacity-40 hover:bg-blush-600 transition"
                   >
-                    Confirm booking <Check className="h-4 w-4" />
+                    {loading ? 'Confirming...' : 'Confirm booking'} 
+                    {loading ? <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" /> : <Check className="h-4 w-4" />}
                   </button>
                 )}
               </div>
