@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Upload, Trash2, Plus, Image as ImageIcon, Video, ArrowLeft, 
+import {
+  Upload, Trash2, Plus, Image as ImageIcon, Video, ArrowLeft,
   CheckCircle, AlertCircle, Loader2, Play, ExternalLink, RefreshCw, Calendar, Check
 } from 'lucide-react';
 import Link from 'next/link';
@@ -135,7 +135,7 @@ export default function AdminDashboard() {
 
     setUploading(true);
     const finalCategory = photoCategory === 'Custom' ? customPhotoCategory.trim() : photoCategory;
-    
+
     if (!finalCategory) {
       addToast('error', 'Please specify a category.');
       setUploading(false);
@@ -179,7 +179,7 @@ export default function AdminDashboard() {
 
     setUploading(true);
     const finalCategory = videoCategory === 'Custom' ? customVideoCategory.trim() : videoCategory;
-    
+
     if (!finalCategory) {
       addToast('error', 'Please specify a category.');
       setUploading(false);
@@ -280,8 +280,8 @@ export default function AdminDashboard() {
             </h1>
             <p className="text-sm text-ink-500 mt-1">Manage Fateh Hospital's public gallery and media content</p>
           </div>
-          
-          <button 
+
+          <button
             onClick={() => {
               fetchItems();
               fetchBookings();
@@ -310,7 +310,7 @@ export default function AdminDashboard() {
         ) : (
           <>
             {/* Tab Bar */}
-            <div className="flex border-b border-blush-100/60 mb-8 p-1 bg-white/70 backdrop-blur-md rounded-2xl max-w-md shadow-sm border border-blush-100/40">
+            <div className="flex border-b border-blush-100/60 mb-8 p-1 bg-white/70 backdrop-blur-md rounded-2xl max-w-7xl shadow-sm border border-blush-100/40">
               {[
                 { id: 'manage', label: 'Manage Gallery', icon: ImageIcon },
                 { id: 'upload-photo', label: 'Upload Photo', icon: Upload },
@@ -320,11 +320,10 @@ export default function AdminDashboard() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center justify-center gap-2 flex-1 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition ${
-                    activeTab === tab.id
-                      ? 'bg-ink-900 text-white shadow-md shadow-ink-900/10'
-                      : 'text-ink-500 hover:text-ink-900'
-                  }`}
+                  className={`flex items-center justify-center gap-2 flex-1 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition ${activeTab === tab.id
+                    ? 'bg-ink-900 text-white shadow-md shadow-ink-900/10'
+                    : 'text-ink-500 hover:text-ink-900'
+                    }`}
                 >
                   <tab.icon size={15} />
                   {tab.label}
@@ -366,16 +365,15 @@ export default function AdminDashboard() {
                                   {booking.concern}
                                 </span>
                               </div>
-                              <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full ${
-                                booking.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
+                              <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full ${booking.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
                                 booking.status === 'Confirmed' ? 'bg-emerald-100 text-emerald-700' :
-                                booking.status === 'Completed' ? 'bg-blue-100 text-blue-700' :
-                                'bg-gray-100 text-gray-700'
-                              }`}>
+                                  booking.status === 'Completed' ? 'bg-blue-100 text-blue-700' :
+                                    'bg-gray-100 text-gray-700'
+                                }`}>
                                 {booking.status}
                               </span>
                             </div>
-                            
+
                             <h4 className="font-serif text-lg font-bold text-ink-900 mb-1">{booking.patient.name}</h4>
                             <p className="text-sm text-ink-500 mb-4 flex gap-3">
                               <span>{booking.patient.phone}</span>
@@ -396,7 +394,7 @@ export default function AdminDashboard() {
                                 <span className="font-semibold text-ink-900 text-right">{booking.doctorId}</span>
                               </div>
                             </div>
-                            
+
                             {booking.patient.notes && (
                               <div className="text-sm text-ink-600 mb-4 bg-gray-50 p-3 rounded-xl border border-gray-100 italic">
                                 "{booking.patient.notes}"
@@ -404,7 +402,7 @@ export default function AdminDashboard() {
                             )}
 
                             <div className="mt-auto flex items-center justify-between gap-2 border-t border-blush-100 pt-4">
-                              <select 
+                              <select
                                 value={booking.status}
                                 onChange={(e) => handleStatusChange(booking._id, e.target.value)}
                                 className="text-xs font-semibold bg-white border border-blush-200 rounded-xl px-3 py-2 text-ink-700 focus:outline-none"
@@ -566,13 +564,12 @@ export default function AdminDashboard() {
                           onDragLeave={handleDragLeave}
                           onDrop={handleDrop}
                           onClick={() => fileInputRef.current?.click()}
-                          className={`border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center min-h-[220px] ${
-                            isDragOver
-                              ? 'border-blush-500 bg-blush-50/50 scale-[1.01]'
-                              : photoPreview
+                          className={`border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center min-h-[220px] ${isDragOver
+                            ? 'border-blush-500 bg-blush-50/50 scale-[1.01]'
+                            : photoPreview
                               ? 'border-blush-200 bg-cream-50/20'
                               : 'border-blush-100 bg-cream-50/40 hover:border-blush-300'
-                          }`}
+                            }`}
                         >
                           <input
                             type="file"
@@ -783,11 +780,10 @@ export default function AdminDashboard() {
               initial={{ opacity: 0, y: 30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-              className={`p-4 rounded-2xl shadow-xl flex items-start gap-3 border pointer-events-auto backdrop-blur-md ${
-                toast.type === 'success'
-                  ? 'bg-emerald-50/95 border-emerald-100 text-emerald-950'
-                  : 'bg-red-50/95 border-red-100 text-red-950'
-              }`}
+              className={`p-4 rounded-2xl shadow-xl flex items-start gap-3 border pointer-events-auto backdrop-blur-md ${toast.type === 'success'
+                ? 'bg-emerald-50/95 border-emerald-100 text-emerald-950'
+                : 'bg-red-50/95 border-red-100 text-red-950'
+                }`}
             >
               <div className="shrink-0 mt-0.5">
                 {toast.type === 'success' ? (
