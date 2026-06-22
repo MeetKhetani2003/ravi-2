@@ -27,7 +27,7 @@ export default function Appointment() {
   const [doctorId, setDoctorId] = useState(doctors[0].id);
   const [date, setDate] = useState(0); // days from today
   const [time, setTime] = useState('');
-  const [patient, setPatient] = useState({ name: '', phone: '', age: '', notes: '' });
+  const [patient, setPatient] = useState({ name: '', phone: '', email: '', age: '', notes: '' });
   const [confirmed, setConfirmed] = useState(false);
 
   const selectedDoc = doctors.find((d) => d.id === doctorId)!;
@@ -73,7 +73,7 @@ export default function Appointment() {
     (step === 1 && concern) ||
     (step === 2 && doctorId) ||
     (step === 3 && date >= 0 && time) ||
-    (step === 4 && patient.name && patient.phone);
+    (step === 4 && patient.name && patient.phone && patient.email);
 
   return (
     <div className="relative min-h-screen">
@@ -255,7 +255,10 @@ export default function Appointment() {
                     <h2 className="font-serif text-3xl font-semibold text-ink-900">Just a few details.</h2>
                     <p className="mt-2 text-ink-500">So our care coordinators can prepare for your visit.</p>
                     <div className="mt-8 space-y-5 max-w-xl">
-                      <Field label="Full name *" value={patient.name} onChange={(v) => setPatient({ ...patient, name: v })} placeholder="Your name" />
+                      <div className="grid sm:grid-cols-2 gap-5">
+                        <Field label="Full name *" value={patient.name} onChange={(v) => setPatient({ ...patient, name: v })} placeholder="Your name" />
+                        <Field label="Email *" value={patient.email} onChange={(v) => setPatient({ ...patient, email: v })} placeholder="you@email.com" />
+                      </div>
                       <div className="grid sm:grid-cols-2 gap-5">
                         <Field label="Phone *" value={patient.phone} onChange={(v) => setPatient({ ...patient, phone: v })} placeholder="+91 98765 43210" />
                         <Field label="Age" value={patient.age} onChange={(v) => setPatient({ ...patient, age: v })} placeholder="e.g. 28" />
@@ -337,6 +340,7 @@ export default function Appointment() {
                 <Row label="Time" value={time} />
                 <Row label="Doctor" value={selectedDoc.name} />
                 <Row label="Patient" value={patient.name} />
+                <Row label="Email" value={patient.email} />
                 <Row label="Phone" value={patient.phone} />
               </div>
 

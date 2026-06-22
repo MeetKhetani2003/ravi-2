@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Upload, Trash2, Plus, Image as ImageIcon, Video, ArrowLeft,
-  CheckCircle, AlertCircle, Loader2, Play, ExternalLink, RefreshCw, Calendar, Check
+  CheckCircle, AlertCircle, Loader2, Play, ExternalLink, RefreshCw, Calendar, Check, Edit, X, Inbox
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -15,9 +15,10 @@ type GalleryItem =
 const CATEGORIES = ['Maternity', 'Neonatology', 'Pediatrics', 'Fertility', 'Gynecology', 'Facility'];
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'manage' | 'upload-photo' | 'add-video' | 'bookings'>('manage');
+  const [activeTab, setActiveTab] = useState<'manage' | 'upload-photo' | 'add-video' | 'bookings' | 'inquiries'>('manage');
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [bookings, setBookings] = useState<any[]>([]);
+  const [inquiries, setInquiries] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [envError, setEnvError] = useState<string | null>(null);
 
@@ -32,6 +33,17 @@ export default function AdminDashboard() {
   const [videoCategory, setVideoCategory] = useState('Maternity');
   const [customVideoCategory, setCustomVideoCategory] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
+
+  // Edit states
+  const [editingItem, setEditingItem] = useState<GalleryItem | null>(null);
+  const [editTitle, setEditTitle] = useState('');
+  const [editCategory, setEditCategory] = useState('Maternity');
+  const [customEditCategory, setCustomEditCategory] = useState('');
+  const [editVideoUrl, setEditVideoUrl] = useState('');
+  const [editPhotoFile, setEditPhotoFile] = useState<File | null>(null);
+  const [editPhotoPreview, setEditPhotoPreview] = useState<string | null>(null);
+  const [editIsDragOver, setEditIsDragOver] = useState(false);
+  const editFileInputRef = useRef<HTMLInputElement>(null);
 
   // UI States
   const [uploading, setUploading] = useState(false);
@@ -88,9 +100,26 @@ export default function AdminDashboard() {
     }
   };
 
+  const fetchInquiries = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch('/api/inquiries');
+      const data = await res.json();
+      if (res.ok) {
+        setInquiries(data.inquiries || []);
+      }
+    } catch (err: any) {
+      console.error(err);
+      addToast('error', err.message || 'Error loading inquiries');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchItems();
     fetchBookings();
+    fetchInquiries();
   }, []);
 
   // Handle Photo Drag & Drop
@@ -213,6 +242,92 @@ export default function AdminDashboard() {
     }
   };
 
+  // Start Edit
+  const handleStartEdit = (item: GalleryItem) => {
+    setEditingItem(item);
+    setEditTitle(item.title);
+    if (CATEGORIES.includes(item.category)) {
+      setEditCategory(item.category);
+      setCustomEditCategory('');
+    } else {
+      setEditCategory('Custom');
+      setCustomEditCategory(item.category);
+    }
+    if (item.type === 'video') {
+      setEditVideoUrl(item.youtubeId);
+    } else {
+      setEditVideoUrl('');
+      setEditPhotoFile(null);
+      setEditPhotoPreview(item.fileId ? `/api/gallery/image/${item.fileId}` : item.url || null);
+    }
+  };
+
+  const handleEditFileSelect = (file: File) => {
+    setEditPhotoFile(file);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setEditPhotoPreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleEditSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingItem) return;
+
+    setUploading(true);
+    const finalCategory = editCategory === 'Custom' ? customEditCategory.trim() : editCategory;
+
+    if (!finalCategory) {
+      addToast('error', 'Please specify a category.');
+      setUploading(false);
+      return;
+    }
+
+    try {
+      let res;
+      if (editingItem.type === 'photo') {
+        const formData = new FormData();
+        if (editPhotoFile) {
+          formData.append('file', editPhotoFile);
+        }
+        formData.append('title', editTitle.trim() || 'Untitled Photo');
+        formData.append('category', finalCategory);
+
+        res = await fetch(`/api/gallery/${editingItem._id}`, {
+          method: 'PATCH',
+          body: formData,
+        });
+      } else {
+        res = await fetch(`/api/gallery/${editingItem._id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title: editTitle.trim() || 'Untitled Video',
+            category: finalCategory,
+            videoUrl: editVideoUrl.trim(),
+          }),
+        });
+      }
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to update item');
+
+      addToast('success', 'Item updated successfully!');
+      
+      // Update items list
+      setItems((prev) =>
+        prev.map((item) => (item._id === editingItem._id ? data.item : item))
+      );
+      
+      setEditingItem(null);
+    } catch (err: any) {
+      addToast('error', err.message || 'Error updating item');
+    } finally {
+      setUploading(false);
+    }
+  };
+
   // Delete Item
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this item?')) return;
@@ -262,6 +377,33 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleInquiryStatusChange = async (id: string, status: string) => {
+    try {
+      const res = await fetch(`/api/inquiries/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      if (!res.ok) throw new Error('Failed to update status');
+      addToast('success', 'Inquiry status updated!');
+      fetchInquiries();
+    } catch (err: any) {
+      addToast('error', err.message);
+    }
+  };
+
+  const handleDeleteInquiry = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this inquiry?')) return;
+    try {
+      const res = await fetch(`/api/inquiries/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Failed to delete inquiry');
+      addToast('success', 'Inquiry deleted!');
+      fetchInquiries();
+    } catch (err: any) {
+      addToast('error', err.message);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-cream-50/40 pb-20 pt-8 relative overflow-hidden">
       {/* Decorative blobs */}
@@ -285,6 +427,7 @@ export default function AdminDashboard() {
             onClick={() => {
               fetchItems();
               fetchBookings();
+              fetchInquiries();
             }}
             className="inline-flex items-center gap-2 rounded-full border border-blush-100 bg-white px-4 py-2 text-xs font-semibold text-ink-700 hover:bg-blush-50 shadow-sm transition"
           >
@@ -316,6 +459,7 @@ export default function AdminDashboard() {
                 { id: 'upload-photo', label: 'Upload Photo', icon: Upload },
                 { id: 'add-video', label: 'Add Video', icon: Plus },
                 { id: 'bookings', label: 'Bookings', icon: Calendar },
+                { id: 'inquiries', label: 'Inquiries', icon: Inbox },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -428,6 +572,94 @@ export default function AdminDashboard() {
                   </motion.div>
                 )}
 
+                {activeTab === 'inquiries' && (
+                  <motion.div
+                    key="inquiries"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    {loading && inquiries.length === 0 ? (
+                      <div className="grid place-items-center py-24">
+                        <Loader2 className="h-10 w-10 text-blush-500 animate-spin" />
+                        <span className="text-sm font-semibold text-ink-500 mt-4">Loading inquiries...</span>
+                      </div>
+                    ) : inquiries.length === 0 ? (
+                      <div className="bg-white border border-blush-100 rounded-3xl p-16 text-center shadow-sm">
+                        <div className="w-16 h-16 bg-blush-50 rounded-2xl flex items-center justify-center mx-auto text-blush-500 mb-4">
+                          <Inbox size={28} />
+                        </div>
+                        <h3 className="font-serif text-xl font-semibold text-ink-900">No inquiries yet</h3>
+                        <p className="text-sm text-ink-500 mt-2">Messages from the contact form will appear here.</p>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {inquiries.map((inquiry) => (
+                          <div key={inquiry._id} className="bg-white border border-blush-100 rounded-[28px] p-6 shadow-sm hover:shadow-lg transition flex flex-col">
+                            <div className="flex justify-between items-start mb-4">
+                              <div>
+                                <span className="inline-flex items-center gap-1.5 rounded-full bg-blush-50 px-3 py-1 text-xs font-semibold text-blush-700">
+                                  {inquiry.concern}
+                                </span>
+                              </div>
+                              <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full ${
+                                inquiry.status === 'New' ? 'bg-rose-100 text-rose-700' :
+                                inquiry.status === 'Read' ? 'bg-amber-100 text-amber-700' :
+                                'bg-emerald-100 text-emerald-700'
+                              }`}>
+                                {inquiry.status}
+                              </span>
+                            </div>
+
+                            <h4 className="font-serif text-lg font-bold text-ink-900 mb-1">{inquiry.name}</h4>
+                            <p className="text-[11px] text-ink-400 font-mono mb-4">
+                              Received: {new Date(inquiry.createdAt).toLocaleString()}
+                            </p>
+
+                            <div className="rounded-2xl bg-cream-50 p-4 text-sm mb-4 space-y-2">
+                              <div className="flex justify-between">
+                                <span className="text-ink-500">Phone</span>
+                                <span className="font-semibold text-ink-900">{inquiry.phone}</span>
+                              </div>
+                              {inquiry.email && (
+                                <div className="flex justify-between gap-2 overflow-hidden">
+                                  <span className="text-ink-500 shrink-0">Email</span>
+                                  <span className="font-semibold text-ink-900 truncate" title={inquiry.email}>{inquiry.email}</span>
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="text-sm text-ink-700 mb-4 bg-gray-50 p-3.5 rounded-2xl border border-gray-100/60 leading-relaxed flex-grow italic">
+                              "{inquiry.message}"
+                            </div>
+
+                            <div className="mt-auto flex items-center justify-between gap-2 border-t border-blush-100 pt-4">
+                              <select
+                                value={inquiry.status}
+                                onChange={(e) => handleInquiryStatusChange(inquiry._id, e.target.value)}
+                                className="text-xs font-semibold bg-white border border-blush-200 rounded-xl px-3 py-2 text-ink-700 focus:outline-none"
+                              >
+                                <option value="New">New</option>
+                                <option value="Read">Read</option>
+                                <option value="Resolved">Resolved</option>
+                              </select>
+
+                              <button
+                                onClick={() => handleDeleteInquiry(inquiry._id)}
+                                className="p-2 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-xl transition shadow-sm"
+                                title="Delete Inquiry"
+                              >
+                                <Trash2 size={16} />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+
                 {activeTab === 'manage' && (
                   <motion.div
                     key="manage"
@@ -524,18 +756,27 @@ export default function AdminDashboard() {
                                     </span>
                                   )}
 
-                                  <button
-                                    onClick={() => handleDelete(item._id)}
-                                    disabled={deletingId === item._id}
-                                    className="ml-auto p-2 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-xl transition shadow-sm active:scale-95 disabled:opacity-50"
-                                    title="Delete Item"
-                                  >
-                                    {deletingId === item._id ? (
-                                      <Loader2 size={16} className="animate-spin" />
-                                    ) : (
-                                      <Trash2 size={16} />
-                                    )}
-                                  </button>
+                                  <div className="ml-auto flex items-center gap-2">
+                                    <button
+                                      onClick={() => handleStartEdit(item)}
+                                      className="p-2 bg-blush-50 hover:bg-blush-500 text-blush-600 hover:text-white rounded-xl transition shadow-sm active:scale-95"
+                                      title="Edit Item"
+                                    >
+                                      <Edit size={16} />
+                                    </button>
+                                    <button
+                                      onClick={() => handleDelete(item._id)}
+                                      disabled={deletingId === item._id}
+                                      className="p-2 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-xl transition shadow-sm active:scale-95 disabled:opacity-50"
+                                      title="Delete Item"
+                                    >
+                                      {deletingId === item._id ? (
+                                        <Loader2 size={16} className="animate-spin" />
+                                      ) : (
+                                        <Trash2 size={16} />
+                                      )}
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -770,6 +1011,184 @@ export default function AdminDashboard() {
           </>
         )}
       </div>
+
+      {/* Edit Modal */}
+      <AnimatePresence>
+        {editingItem && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setEditingItem(null)}
+              className="absolute inset-0 bg-ink-950/40 backdrop-blur-sm"
+            />
+
+            {/* Modal Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              className="relative w-full max-w-lg bg-white border border-blush-100 rounded-3xl p-6 md:p-8 shadow-2xl z-10 overflow-y-auto max-h-[90vh]"
+            >
+              <button
+                type="button"
+                onClick={() => setEditingItem(null)}
+                className="absolute top-4 right-4 p-2 text-ink-400 hover:text-ink-900 rounded-xl hover:bg-cream-50 transition"
+              >
+                <X size={18} />
+              </button>
+
+              <h3 className="font-serif text-2xl font-semibold text-ink-900 mb-6">
+                Edit {editingItem.type === 'photo' ? 'Photo' : 'Video'}
+              </h3>
+
+              <form onSubmit={handleEditSubmit} className="space-y-5">
+                {editingItem.type === 'photo' && (
+                  <div>
+                    <label className="block text-sm font-semibold text-ink-900 mb-2">Replace Image (optional)</label>
+                    <div
+                      onDragOver={(e) => { e.preventDefault(); setEditIsDragOver(true); }}
+                      onDragLeave={() => setEditIsDragOver(false)}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        setEditIsDragOver(false);
+                        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                          const file = e.dataTransfer.files[0];
+                          if (file.type.startsWith('image/')) {
+                            handleEditFileSelect(file);
+                          } else {
+                            addToast('error', 'Please drop a valid image file.');
+                          }
+                        }
+                      }}
+                      onClick={() => editFileInputRef.current?.click()}
+                      className={`border-2 border-dashed rounded-2xl p-4 text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center min-h-[140px] ${
+                        editIsDragOver
+                          ? 'border-blush-500 bg-blush-50/50'
+                          : editPhotoPreview
+                            ? 'border-blush-200 bg-cream-50/20'
+                            : 'border-blush-100 bg-cream-50/40 hover:border-blush-300'
+                      }`}
+                    >
+                      <input
+                        type="file"
+                        ref={editFileInputRef}
+                        onChange={(e) => e.target.files?.[0] && handleEditFileSelect(e.target.files[0])}
+                        accept="image/*"
+                        className="hidden"
+                      />
+
+                      {editPhotoPreview ? (
+                        <div className="relative w-full max-h-[120px] overflow-hidden rounded-xl border border-blush-100 flex items-center justify-center bg-cream-50">
+                          <img
+                            src={editPhotoPreview}
+                            alt="Edit Preview"
+                            className="max-h-[120px] w-auto object-contain rounded-xl"
+                          />
+                        </div>
+                      ) : (
+                        <>
+                          <div className="w-10 h-10 bg-blush-50 rounded-xl flex items-center justify-center text-blush-600 mb-2 shadow-sm">
+                            <Upload size={18} />
+                          </div>
+                          <p className="font-semibold text-ink-800 text-xs">Drag & drop or <span className="text-blush-600">browse files</span></p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Title */}
+                <div>
+                  <label className="block text-sm font-semibold text-ink-900 mb-2">Title</label>
+                  <input
+                    type="text"
+                    value={editTitle}
+                    onChange={(e) => setEditTitle(e.target.value)}
+                    required
+                    placeholder="Enter title"
+                    className="w-full rounded-2xl bg-cream-50 border border-blush-100 px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blush-300 transition"
+                  />
+                </div>
+
+                {/* YouTube Link / ID if Video */}
+                {editingItem.type === 'video' && (
+                  <div>
+                    <label className="block text-sm font-semibold text-ink-900 mb-2">YouTube URL or Video ID</label>
+                    <input
+                      type="text"
+                      value={editVideoUrl}
+                      onChange={(e) => setEditVideoUrl(e.target.value)}
+                      required
+                      placeholder="e.g. https://www.youtube.com/watch?v=..."
+                      className="w-full rounded-2xl bg-cream-50 border border-blush-100 px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blush-300 transition"
+                    />
+                  </div>
+                )}
+
+                {/* Category Selection */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-ink-900 mb-2">Category</label>
+                    <select
+                      value={editCategory}
+                      onChange={(e) => setEditCategory(e.target.value)}
+                      className="w-full rounded-2xl bg-cream-50 border border-blush-100 px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blush-300 transition"
+                    >
+                      {CATEGORIES.map((c) => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                      <option value="Custom">Custom Category...</option>
+                    </select>
+                  </div>
+
+                  {editCategory === 'Custom' && (
+                    <motion.div
+                      initial={{ opacity: 0, x: 10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                    >
+                      <label className="block text-sm font-semibold text-ink-900 mb-2">Custom Category Name</label>
+                      <input
+                        type="text"
+                        value={customEditCategory}
+                        onChange={(e) => setCustomEditCategory(e.target.value)}
+                        placeholder="e.g. Operation Theatre"
+                        className="w-full rounded-2xl bg-cream-50 border border-blush-100 px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blush-300 transition"
+                      />
+                    </motion.div>
+                  )}
+                </div>
+
+                {/* Submit button */}
+                <div className="pt-2 flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setEditingItem(null)}
+                    className="flex-1 rounded-full border border-blush-100 bg-white py-3 text-sm font-semibold text-ink-700 hover:bg-blush-50 transition"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={uploading}
+                    className="flex-grow-[2] rounded-full bg-ink-900 text-white py-3 font-semibold hover:bg-ink-800 transition flex items-center justify-center gap-2 disabled:opacity-50"
+                  >
+                    {uploading ? (
+                      <>
+                        <Loader2 size={16} className="animate-spin" /> Saving...
+                      </>
+                    ) : (
+                      <>Save Changes</>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* Toasts System */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-sm pointer-events-none">

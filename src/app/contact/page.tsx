@@ -5,13 +5,36 @@ import { Phone, Mail, MapPin, Clock, MessageCircle, Send, Heart } from 'lucide-r
 import { Section, SectionHeader, Card } from '@/components/ui';
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', phone: '', email: '', concern: '', message: '' });
+  const [form, setForm] = useState({ name: '', phone: '', email: '', concern: 'General enquiry', message: '' });
+  const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
+    if (!form.name || !form.phone || !form.message) {
+      setError('Please fill in name, phone, and message fields.');
+      return;
+    }
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      });
+      if (!res.ok) {
+        throw new Error('Failed to send message');
+      }
+      setSent(true);
+      setForm({ name: '', phone: '', email: '', concern: 'General enquiry', message: '' });
+      setTimeout(() => setSent(false), 5000);
+    } catch (err: any) {
+      setError(err.message || 'An error occurred. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -146,11 +169,21 @@ export default function Contact() {
                     className="w-full rounded-2xl bg-cream-50 border border-blush-100 px-5 py-4 text-sm placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-blush-300 focus:border-transparent resize-none"
                   />
                 </div>
+                {error && (
+                  <p className="text-sm text-red-500 text-center font-medium">{error}</p>
+                )}
                 <button
                   type="submit"
-                  className="w-full rounded-full bg-ink-900 text-white px-8 py-4 font-semibold hover:bg-ink-800 transition flex items-center justify-center gap-2"
+                  disabled={submitting}
+                  className="w-full rounded-full bg-ink-900 text-white px-8 py-4 font-semibold hover:bg-ink-800 transition flex items-center justify-center gap-2 disabled:opacity-50"
                 >
-                  {sent ? 'Message sent — we\'ll be in touch ✓' : (<>Send message <Send className="h-4 w-4" /></>)}
+                  {submitting ? (
+                    'Sending message...'
+                  ) : sent ? (
+                    'Message sent — we\'ll be in touch ✓'
+                  ) : (
+                    <>Send message <Send className="h-4 w-4" /></>
+                  )}
                 </button>
                 <p className="text-xs text-ink-400 text-center">By submitting, you agree to be contacted by our care coordinators.</p>
               </form>
