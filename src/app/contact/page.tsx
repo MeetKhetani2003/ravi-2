@@ -82,7 +82,7 @@ export default function Contact() {
             {[
               { icon: MapPin, title: 'Visit us', lines: ['Dholan Majra Chowk, Old Plaza Building', 'Old Chandigarh-Morinda Road, Morinda'], accent: 'from-blush-400 to-blush-600' },
               { icon: Phone, title: 'Call us', lines: ['General: 78887-41037', 'Alt: 94633-66657'], accent: 'from-sky-400 to-blue-500' },
-              { icon: Mail, title: 'Write to us', lines: ['info@ravihospital.com'], accent: 'from-emerald-400 to-teal-500' },
+              { icon: Mail, title: 'Write to us', lines: ['supportfatehhospital@gmail.com'], accent: 'from-emerald-400 to-teal-500' },
               { icon: Clock, title: 'Working hours', lines: ['OPD: Mon–Sat · 9 AM – 8 PM', 'Maternity, NICU, Emergency: 24/7'], accent: 'from-amber-400 to-orange-500' },
             ].map((item, i) => (
               <motion.div

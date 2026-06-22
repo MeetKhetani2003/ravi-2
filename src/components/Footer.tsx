@@ -52,8 +52,8 @@ export default function Footer() {
               <a href="tel:7888741037" className="flex items-center gap-3 hover:text-blush-600 transition">
                 <Phone className="h-4 w-4 text-blush-500" /> 78887-41037
               </a>
-              <a href="mailto:info@ravihospital.com" className="flex items-center gap-3 hover:text-blush-600 transition">
-                <Mail className="h-4 w-4 text-blush-500" /> info@ravihospital.com
+              <a href="mailto:supportfatehhospital@gmail.com" className="flex items-center gap-3 hover:text-blush-600 transition">
+                <Mail className="h-4 w-4 text-blush-500" /> supportfatehhospital@gmail.com
               </a>
             </div>
           </div>
