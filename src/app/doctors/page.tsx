@@ -192,7 +192,7 @@ export default function Doctors() {
                 <Link href="/appointment" className="rounded-full bg-ink-900 text-white px-6 py-3.5 text-sm font-semibold hover:bg-ink-800 transition">
                   Book consultation
                 </Link>
-                <a href="tel:+919876543210" className="rounded-full bg-white border border-blush-100 text-ink-900 px-6 py-3.5 text-sm font-semibold">
+                <a href="tel:7888741037" className="rounded-full bg-white border border-blush-100 text-ink-900 px-6 py-3.5 text-sm font-semibold">
                   Call care desk
                 </a>
               </div>

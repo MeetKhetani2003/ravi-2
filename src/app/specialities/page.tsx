@@ -81,7 +81,7 @@ export default function Services() {
                 </div>
                 <div className="mt-3 font-serif text-xl font-semibold">Urgent maternity or NICU?</div>
                 <p className="mt-2 text-sm text-white/85">A senior specialist answers within 60 seconds.</p>
-                <a href="tel:+919876543210" className="mt-4 inline-flex items-center gap-2 rounded-full bg-white text-ink-900 px-5 py-2.5 text-sm font-semibold">
+                <a href="tel:7888741037" className="mt-4 inline-flex items-center gap-2 rounded-full bg-white text-ink-900 px-5 py-2.5 text-sm font-semibold">
                   <Phone className="h-4 w-4" /> Call now
                 </a>
               </div>

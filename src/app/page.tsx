@@ -1,33 +1,15 @@
 "use client";
 import Link from 'next/link';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import {
   Heart, Shield, Stethoscope, Baby, Sparkles, Star, Phone, Calendar,
   ArrowUpRight, Clock, Award, Users, Activity, ChevronRight, ChevronLeft, Quote, ShieldCheck, MapPin, CheckCircle2, Image as ImageIcon, Plus, Minus, Microscope, ArrowRight, MessageCircle
 } from 'lucide-react';
 import { Section, SectionHeader, Card } from '@/components/ui';
-import { services, doctors, testimonials, stats, HOSPITAL_INFO } from '@/data';
+import { services, doctors, testimonials, HOSPITAL_INFO } from '@/data';
 
-function Counter({ to, suffix = '' }: { to: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-50px' });
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const duration = 1800;
-    const startTime = performance.now();
-    const tick = (now: number) => {
-      const p = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setValue(Math.floor(start + (to - start) * eased));
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }, [inView, to]);
-  return <span ref={ref}>{value.toLocaleString()}{suffix}</span>;
-}
+
 
 const HERO_IMAGES = [
   {
@@ -69,20 +51,14 @@ const FAQS = [
 ];
 
 const CERTIFICATIONS = [
-  { title: "NABH Accredited" },
   { title: "IAP Certified" },
   { title: "Safe Delivery" }
 ];
 
 const SERVICE_LOCATIONS = [
   { name: "Sunny Enclave", status: "Active" },
-  { name: "Sector 125", status: "Active" },
   { name: "Mohali", status: "Active" },
   { name: "Kharar", status: "Active" },
-  { name: "Chandigarh", status: "Active" },
-  { name: "Panchkula", status: "Active" },
-  { name: "New Sunny Enclave", status: "Active" },
-  { name: "Mundhi Kharar", status: "Active" },
   { name: "Gillco Valley", status: "Expanding Soon" },
   { name: "Sector 127", status: "Expanding Soon" }
 ];
@@ -461,26 +437,6 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Stats banner */}
-        <div className="mt-10 rounded-[36px] bg-gradient-to-br from-ink-900 via-ink-800 to-ink-900 text-white p-10 lg:p-14 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_0%_0%,rgba(255,125,163,0.4),transparent_50%),radial-gradient(circle_at_100%_100%,rgba(138,197,255,0.4),transparent_50%)]" />
-          <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((s, i) => (
-              <motion.div
-                key={s.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <div className="font-serif text-4xl lg:text-6xl font-semibold leading-none">
-                  <Counter to={parseInt(s.value.replace(/\D/g, ''))} suffix={s.value.includes('K') ? 'K+' : s.value.includes('%') ? '%' : s.value.includes('+') ? '+' : ''} />
-                </div>
-                <div className="mt-3 text-sm text-white/60 max-w-[14ch]">{s.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </Section>
 
       {/* ========= SERVICES PREVIEW ========= */}
@@ -847,7 +803,7 @@ export default function Home() {
           <SectionHeader eyebrow="Our Presence" title={<>Serving Our Local Communities</>} />
           <div className="flex items-center gap-4 bg-blush-50 px-6 py-3 rounded-full border border-blush-100">
             <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-sm font-bold text-ink-900">10+ Active Service Areas</span>
+            <span className="text-sm font-bold text-ink-900">Active Service Areas</span>
           </div>
         </div>
         <div className="flex flex-wrap gap-4 justify-center">

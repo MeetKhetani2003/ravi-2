@@ -103,7 +103,7 @@ export default function Appointment() {
             <div className="font-semibold text-ink-900">Is this an emergency?</div>
             <div className="text-sm text-ink-500">For urgent maternity or NICU care, please call immediately — don't wait for online booking.</div>
           </div>
-          <a href="tel:+919876543210" className="rounded-full bg-ink-900 text-white px-5 py-2.5 text-sm font-semibold flex items-center gap-2 shrink-0">
+          <a href="tel:7888741037" className="rounded-full bg-ink-900 text-white px-5 py-2.5 text-sm font-semibold flex items-center gap-2 shrink-0">
             <Phone className="h-4 w-4" /> Call now
           </a>
         </div>
@@ -351,7 +351,7 @@ export default function Appointment() {
 
               <div className="mt-10 flex flex-wrap gap-3 justify-center">
                 <Link href="/" className="rounded-full bg-ink-900 text-white px-6 py-3 text-sm font-semibold hover:bg-ink-800">Back to home</Link>
-                <a href="tel:+919876543210" className="rounded-full bg-white border border-blush-100 text-ink-900 px-6 py-3 text-sm font-semibold flex items-center gap-2">
+                <a href="tel:7888741037" className="rounded-full bg-white border border-blush-100 text-ink-900 px-6 py-3 text-sm font-semibold flex items-center gap-2">
                   <Phone className="h-4 w-4" /> Call care desk
                 </a>
               </div>
